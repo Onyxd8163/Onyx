@@ -1,4 +1,5 @@
-local p, uis = game.Players.LocalPlayer, game:GetService("UserInputService")
+local p = game.Players.LocalPlayer
+local uis = game:GetService("UserInputService")
 local mouse = p:GetMouse()
 local gui = Instance.new("ScreenGui", p:FindFirstChildOfClass("PlayerGui"))
 gui.ResetOnSpawn = false
@@ -17,7 +18,7 @@ local frame = createUI("Frame", {
 }, gui)
 createUI("UICorner", {CornerRadius = UDim.new(0, 10)}, frame)
 
--- **ONYX Yazısı**
+-- ONYX Yazısı
 createUI("TextLabel", {
     Size = UDim2.new(0, 100, 0, 30), Position = UDim2.new(0, 5, 0, 5),
     Text = "ONYX", TextSize = 20, Font = Enum.Font.SourceSansBold, TextColor3 = Color3.new(1, 1, 1),
@@ -27,18 +28,38 @@ createUI("TextLabel", {
 -- Profil Bilgisi
 local profile = createUI("Frame", {Size = UDim2.new(0, 120, 0, 30), Position = UDim2.new(1, -130, 0, 5), BackgroundColor3 = Color3.fromRGB(50, 50, 50)}, frame)
 createUI("UICorner", {CornerRadius = UDim.new(0, 10)}, profile)
-createUI("ImageLabel", {Size = UDim2.new(0, 25, 0, 25), Position = UDim2.new(0, 2, 0, 2), Image = "https://www.roblox.com/headshot-thumbnail/image?userId="..p.UserId, BackgroundTransparency = 1}, profile)
-createUI("TextLabel", {Size = UDim2.new(1, -30, 1, 0), Position = UDim2.new(0, 30, 0, 0), Text = p.Name, TextSize = 14, TextColor3 = Color3.new(1, 1, 1), BackgroundTransparency = 1}, profile)
+
+-- Kullanıcı Profil Fotoğrafı
+local userId = p.UserId
+local thumbType = Enum.ThumbnailType.HeadShot
+local thumbSize = Enum.ThumbnailSize.Size48x48
+local content, isReady = game.Players:GetUserThumbnailAsync(userId, thumbType, thumbSize)
+
+local profileImage = createUI("ImageLabel", {
+    Size = UDim2.new(0, 25, 0, 25), Position = UDim2.new(0, 2, 0, 2),
+    Image = content, BackgroundTransparency = 1
+}, profile)
+
+createUI("TextLabel", {
+    Size = UDim2.new(1, -30, 1, 0), Position = UDim2.new(0, 30, 0, 0),
+    Text = p.Name, TextSize = 14, TextColor3 = Color3.new(1, 1, 1), BackgroundTransparency = 1
+}, profile)
 
 -- Sekmeler ve Sayfalar
 local tabs = {"Özellikler", "Ayarlar"}
 local pages = {}
 
 for i, name in ipairs(tabs) do
-    local tab = createUI("TextButton", {Size = UDim2.new(0, 140, 0, 30), Position = UDim2.new(0, 10 + (i-1) * 140, 0, 40), Text = name, BackgroundColor3 = Color3.fromRGB(50, 50, 50), TextColor3 = Color3.new(1, 1, 1)}, frame)
+    local tab = createUI("TextButton", {
+        Size = UDim2.new(0, 140, 0, 30), Position = UDim2.new(0, 10 + (i-1) * 140, 0, 40),
+        Text = name, BackgroundColor3 = Color3.fromRGB(50, 50, 50), TextColor3 = Color3.new(1, 1, 1)
+    }, frame)
     createUI("UICorner", {CornerRadius = UDim.new(0, 8)}, tab)
 
-    local page = createUI("Frame", {Size = UDim2.new(1, -20, 1, -80), Position = UDim2.new(0, 10, 0, 80), BackgroundTransparency = 1, Visible = i == 1}, frame)
+    local page = createUI("Frame", {
+        Size = UDim2.new(1, -20, 1, -80), Position = UDim2.new(0, 10, 0, 80),
+        BackgroundTransparency = 1, Visible = i == 1
+    }, frame)
     pages[i] = page
 
     tab.MouseButton1Click:Connect(function()
@@ -46,7 +67,7 @@ for i, name in ipairs(tabs) do
     end)
 end
 
--- **Duvardan Geçme**
+-- Duvardan Geçme
 local function toggleWallPass(state)
     local char = p.Character or p.CharacterAdded:Wait()
     for _, part in ipairs(char:GetDescendants()) do
@@ -56,7 +77,7 @@ local function toggleWallPass(state)
     end
 end
 
--- **Sınırsız Zıplama**
+-- Sınırsız Zıplama
 local infiniteJump = false
 uis.JumpRequest:Connect(function()
     if infiniteJump then
@@ -68,7 +89,7 @@ local function toggleInfiniteJump(state)
     infiniteJump = state
 end
 
--- **Tıkladığın Yere Işınlanma**
+-- Tıkladığın Yere Işınlanma
 local teleportEnabled = false
 local function toggleTeleport(state)
     teleportEnabled = state
@@ -82,7 +103,25 @@ mouse.Button1Down:Connect(function()
     end
 end)
 
--- **Özellik Butonları**
+-- Fullbright Özelliği
+local lighting = game:GetService("Lighting")
+local defaultAmbient = lighting.Ambient
+local defaultOutdoorAmbient = lighting.OutdoorAmbient
+local defaultBrightness = lighting.Brightness
+
+local function toggleFullbright(state)
+    if state then
+        lighting.Ambient = Color3.new(1, 1, 1)
+        lighting.OutdoorAmbient = Color3.new(1, 1, 1)
+        lighting.Brightness = 2
+    else
+        lighting.Ambient = defaultAmbient
+        lighting.OutdoorAmbient = defaultOutdoorAmbient
+        lighting.Brightness = defaultBrightness
+    end
+end
+
+-- Özellik Butonları
 local buttons = {
     {"Duvardan Geçme", toggleWallPass},
     {"Sınırsız Zıplama", toggleInfiniteJump},
@@ -90,16 +129,27 @@ local buttons = {
     {"ESP", function(s)
         for _, v in pairs(game.Players:GetPlayers()) do
             if v ~= p then
-                if s then Instance.new("Highlight", v.Character or v.CharacterAdded:Wait()).FillColor = Color3.fromRGB(255, 0, 0)
-                else for _, h in pairs(v.Character:GetChildren()) do if h:IsA("Highlight") then h:Destroy() end end end
+                if s then
+                    Instance.new("Highlight", v.Character or v.CharacterAdded:Wait()).FillColor = Color3.fromRGB(255, 0, 0)
+                else
+                    for _, h in pairs(v.Character:GetChildren()) do
+                        if h:IsA("Highlight") then h:Destroy() end
+                    end
+                end
             end
         end
-    end}
+    end},
+    {"Fullbright", toggleFullbright}
 }
 
+-- Butonları oluştur
 for i, v in ipairs(buttons) do
-    local btn = createUI("TextButton", {Size = UDim2.new(0, 270, 0, 40), Position = UDim2.new(0, 15, 0, 10 + i * 50), BackgroundColor3 = Color3.fromRGB(50, 50, 50), Text = v[1], TextSize = 14, TextColor3 = Color3.new(1, 1, 1)}, pages[1])
+    local btn = createUI("TextButton", {
+        Size = UDim2.new(0, 270, 0, 40), Position = UDim2.new(0, 15, 0, 10 + (i-1) * 50),
+        BackgroundColor3 = Color3.fromRGB(50, 50, 50), Text = v[1], TextSize = 14, TextColor3 = Color3.new(1, 1, 1)
+    }, pages[1])
     createUI("UICorner", {CornerRadius = UDim.new(0, 8)}, btn)
+
     local active = false
     btn.MouseButton1Click:Connect(function()
         active = not active
@@ -108,33 +158,66 @@ for i, v in ipairs(buttons) do
     end)
 end
 
--- **Boyut Ayarlama (Ayarlar Sekmesi)**
-local function createInputBox(pos, default, callback)
-    local box = createUI("TextBox", {Size = UDim2.new(0, 100, 0, 30), Position = pos, Text = tostring(default), BackgroundColor3 = Color3.fromRGB(50, 50, 50), TextColor3 = Color3.new(1, 1, 1)}, pages[2])
+-- Ayarlar Sekmesi: Boyut Ayarlama
+local function createInputBox(pos, default, callback, labelText)
+    local container = createUI("Frame", {
+        Size = UDim2.new(0, 100, 0, 50), Position = pos, BackgroundTransparency = 1
+    }, pages[2])
+
+    local box = createUI("TextBox", {
+        Size = UDim2.new(0, 80, 0, 30), Position = UDim2.new(0, 0, 0, 0),
+        Text = tostring(default), BackgroundColor3 = Color3.fromRGB(50, 50, 50), TextColor3 = Color3.new(1, 1, 1)
+    }, container)
     createUI("UICorner", {CornerRadius = UDim.new(0, 8)}, box)
+
+    local label = createUI("TextLabel", {
+        Size = UDim2.new(0, 80, 0, 20), Position = UDim2.new(0, 0, 0, 30),
+        Text = labelText, TextSize = 12, TextColor3 = Color3.new(1, 1, 1), BackgroundTransparency = 1
+    }, container)
+
     box.FocusLost:Connect(function()
         local num = tonumber(box.Text)
         if num then callback(num) end
     end)
 end
 
-createInputBox(UDim2.new(0, 20, 0, 40), 300, function(v) frame.Size = UDim2.new(0, v, 0, frame.Size.Y.Offset) end)
-createInputBox(UDim2.new(0, 150, 0, 40), 400, function(v) frame.Size = UDim2.new(0, frame.Size.X.Offset, 0, v) end)
+-- Genişlik ve Uzunluk ayarlama kutuları
+createInputBox(UDim2.new(0, 20, 0, 40), 300, function(v) frame.Size = UDim2.new(0, v, 0, frame.Size.Y.Offset) end, "Genişlik")
+createInputBox(UDim2.new(0, 150, 0, 40), 400, function(v) frame.Size = UDim2.new(0, frame.Size.X.Offset, 0, v) end, "Uzunluk")
 
--- **Reset & Oyundan Çıkış**
+-- Reset & Oyundan Çıkış
 local function createGlobalButton(name, pos, action)
-    createUI("TextButton", {Size = UDim2.new(0, 130, 0, 40), Position = pos, BackgroundColor3 = Color3.fromRGB(170, 0, 0), Text = name, TextSize = 14, TextColor3 = Color3.new(1, 1, 1)}, frame).MouseButton1Click:Connect(action)
+    createUI("TextButton", {
+        Size = UDim2.new(0, 130, 0, 40), Position = pos, BackgroundColor3 = Color3.fromRGB(170, 0, 0),
+        Text = name, TextSize = 14, TextColor3 = Color3.new(1, 1, 1)
+    }, frame).MouseButton1Click:Connect(action)
 end
 
 createGlobalButton("Reset", UDim2.new(0, 10, 1, -50), function() p.Character:BreakJoints() end)
 createGlobalButton("Oyundan Çık", UDim2.new(0, 160, 1, -50), function() game:Shutdown() end)
 
--- **GUI Aç/Kapat**
+-- GUI Aç/Kapat Butonu
 local toggleButton = createUI("TextButton", {
-    Size = UDim2.new(0, 50, 0, 20), Position = UDim2.new(0, 10, 0, 10),
-    Text = "GUI", BackgroundColor3 = Color3.fromRGB(100, 100, 100), TextColor3 = Color3.new(1, 1, 1)
+    Size = UDim2.new(0, 60, 0, 30), Position = UDim2.new(0, 10, 0, 10),
+    Text = "TOGGLE", BackgroundColor3 = Color3.fromRGB(100, 100, 100), TextColor3 = Color3.new(1, 1, 1)
 }, gui)
+createUI("UICorner", {CornerRadius = UDim.new(0, 8)}, toggleButton)
 
 toggleButton.MouseButton1Click:Connect(function()
     frame.Visible = not frame.Visible
+    toggleButton.Text = frame.Visible and "KAPAT" or "AÇ"
+end)
+
+-- Shift Lock Butonu
+local shiftLockButton = createUI("TextButton", {
+    Size = UDim2.new(0, 30, 0, 30), Position = UDim2.new(0, 80, 0, 10),
+    BackgroundColor3 = Color3.fromRGB(50, 50, 50), Text = "🔒", TextSize = 18, TextColor3 = Color3.new(1, 1, 1)
+}, gui)
+createUI("UICorner", {CornerRadius = UDim.new(1, 0)}, shiftLockButton)
+
+local shiftLockEnabled = false
+shiftLockButton.MouseButton1Click:Connect(function()
+    shiftLockEnabled = not shiftLockEnabled
+    shiftLockButton.Text = shiftLockEnabled and "🔓" or "🔒"
+    p.DevCameraOcclusionMode = shiftLockEnabled and Enum.DevCameraOcclusionMode.Invisicam or Enum.DevCameraOcclusionMode.Zoom
 end)
