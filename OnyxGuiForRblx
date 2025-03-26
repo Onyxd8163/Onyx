@@ -1,6 +1,13 @@
 local p = game.Players.LocalPlayer
 local uis = game:GetService("UserInputService")
 local mouse = p:GetMouse()
+
+-- Anahtar ayarları
+local VALID_KEY = "OnyxDesign10k"
+local usedKeys = {} -- Kullanılan anahtarları takip etmek için
+local keyVerified = false
+
+-- GUI oluşturma
 local gui = Instance.new("ScreenGui", p:FindFirstChildOfClass("PlayerGui"))
 gui.ResetOnSpawn = false
 
@@ -11,256 +18,316 @@ local function createUI(class, props, parent)
     return e
 end
 
--- Ana Çerçeve (Mavi/açık mavi gradient)
-local frame = createUI("Frame", {
-    Size = UDim2.new(0, 300, 0, 400), 
-    Position = UDim2.new(0.3, 0, 0.3, 0),
-    BackgroundColor3 = Color3.fromRGB(35, 35, 35),
-    Draggable = true, 
-    Active = true
+-- Anahtar giriş GUI'si
+local keyFrame = createUI("Frame", {
+    Size = UDim2.new(0, 300, 0, 200),
+    Position = UDim2.new(0.5, -150, 0.5, -100),
+    BackgroundColor3 = Color3.fromRGB(40, 40, 40),
+    Visible = true
 }, gui)
-
--- Gradient efekti ekle
-local gradient = createUI("UIGradient", {
-    Color = ColorSequence.new({
-        ColorSequenceKeypoint.new(0, Color3.fromRGB(70, 130, 200)), -- Koyu mavi
-        ColorSequenceKeypoint.new(1, Color3.fromRGB(150, 200, 255)) -- Açık mavi
-    }),
-    Rotation = 90
-}, frame)
-createUI("UICorner", {CornerRadius = UDim.new(0, 10)}, frame)
-
--- ONYX Yazısı
-createUI("TextLabel", {
-    Size = UDim2.new(0, 100, 0, 30), 
-    Position = UDim2.new(0, 5, 0, 5),
-    Text = "ONYX", 
-    TextSize = 20, 
-    Font = Enum.Font.SourceSansBold, 
-    TextColor3 = Color3.new(1, 1, 1),
-    TextStrokeColor3 = Color3.new(0, 0, 0),
-    TextStrokeTransparency = 0.5,
-    BackgroundTransparency = 1
-}, frame)
-
--- Profil Bilgisi
-local profile = createUI("Frame", {
-    Size = UDim2.new(0, 120, 0, 30), 
-    Position = UDim2.new(1, -130, 0, 5), 
-    BackgroundColor3 = Color3.fromRGB(50, 50, 50),
-    BackgroundTransparency = 0.7
-}, frame)
-createUI("UICorner", {CornerRadius = UDim.new(0, 10)}, profile)
-
--- Kullanıcı Profil Fotoğrafı
-local userId = p.UserId
-local thumbType = Enum.ThumbnailType.HeadShot
-local thumbSize = Enum.ThumbnailSize.Size48x48
-local content, isReady = game.Players:GetUserThumbnailAsync(userId, thumbType, thumbSize)
-
-local profileImage = createUI("ImageLabel", {
-    Size = UDim2.new(0, 25, 0, 25), 
-    Position = UDim2.new(0, 2, 0, 2),
-    Image = content, 
-    BackgroundTransparency = 1
-}, profile)
+createUI("UICorner", {CornerRadius = UDim.new(0, 10)}, keyFrame)
 
 createUI("TextLabel", {
-    Size = UDim2.new(1, -30, 1, 0), 
-    Position = UDim2.new(0, 30, 0, 0),
-    Text = p.Name, 
-    TextSize = 14, 
-    TextColor3 = Color3.new(1, 1, 1), 
+    Size = UDim2.new(1, -20, 0, 50),
+    Position = UDim2.new(0, 10, 0, 10),
+    Text = "ONYX SISTEMINE HOSGELDINIZ",
+    TextSize = 20,
+    Font = Enum.Font.GothamBold,
+    TextColor3 = Color3.fromRGB(100, 150, 255),
     BackgroundTransparency = 1
-}, profile)
+}, keyFrame)
 
--- Sekmeler ve Sayfalar
-local tabs = {"Özellikler", "Ayarlar"}
-local pages = {}
+local keyBox = createUI("TextBox", {
+    Size = UDim2.new(1, -40, 0, 40),
+    Position = UDim2.new(0, 20, 0, 70),
+    PlaceholderText = "Anahtar girin...",
+    Text = "",
+    TextSize = 16,
+    BackgroundColor3 = Color3.fromRGB(60, 60, 60),
+    TextColor3 = Color3.new(1, 1, 1)
+}, keyFrame)
+createUI("UICorner", {CornerRadius = UDim.new(0, 5)}, keyBox)
 
-for i, name in ipairs(tabs) do
-    local tab = createUI("TextButton", {
-        Size = UDim2.new(0, 140, 0, 30), 
-        Position = UDim2.new(0, 10 + (i-1) * 140, 0, 40),
-        Text = name, 
-        BackgroundColor3 = Color3.fromRGB(80, 150, 220),
-        BackgroundTransparency = 0.3,
-        TextColor3 = Color3.new(1, 1, 1)
-    }, frame)
-    createUI("UICorner", {CornerRadius = UDim.new(0, 8)}, tab)
+local submitButton = createUI("TextButton", {
+    Size = UDim2.new(1, -40, 0, 40),
+    Position = UDim2.new(0, 20, 0, 120),
+    Text = "GIRIS YAP",
+    TextSize = 16,
+    BackgroundColor3 = Color3.fromRGB(100, 50, 200),
+    TextColor3 = Color3.new(1, 1, 1)
+}, keyFrame)
+createUI("UICorner", {CornerRadius = UDim.new(0, 5)}, submitButton)
 
-    local page = createUI("Frame", {
-        Size = UDim2.new(1, -20, 1, -80), 
-        Position = UDim2.new(0, 10, 0, 80),
-        BackgroundTransparency = 1, 
-        Visible = i == 1
-    }, frame)
-    pages[i] = page
+local errorLabel = createUI("TextLabel", {
+    Size = UDim2.new(1, -20, 0, 20),
+    Position = UDim2.new(0, 10, 0, 170),
+    Text = "",
+    TextSize = 14,
+    TextColor3 = Color3.fromRGB(255, 50, 50),
+    BackgroundTransparency = 1,
+    Visible = false
+}, keyFrame)
 
-    tab.MouseButton1Click:Connect(function()
-        for j, p in ipairs(pages) do p.Visible = (j == i) end
+-- Main GUI ve özellikler
+local mainFrame
+local toggleButton
+
+-- Anahtar doğrulandığında çalışacak fonksiyon
+local function onKeyVerified()
+    keyFrame.Visible = false
+    
+    -- Ana Çerçeve
+    mainFrame = createUI("Frame", {
+        Size = UDim2.new(0, 300, 0, 400), 
+        Position = UDim2.new(0.3, 0, 0.3, 0),
+        BackgroundColor3 = Color3.fromRGB(35, 35, 35), 
+        Draggable = true, 
+        Active = true,
+        Visible = false -- Başlangıçta gizli
+    }, gui)
+    createUI("UICorner", {CornerRadius = UDim.new(0, 10)}, mainFrame)
+
+    -- ONYX Yazısı
+    createUI("TextLabel", {
+        Size = UDim2.new(0, 100, 0, 30), 
+        Position = UDim2.new(0, 5, 0, 5),
+        Text = "ONYX", 
+        TextSize = 20, 
+        Font = Enum.Font.SourceSansBold, 
+        TextColor3 = Color3.new(1, 1, 1),
+        BackgroundTransparency = 1
+    }, mainFrame)
+
+    -- Profil Bilgisi
+    local profile = createUI("Frame", {
+        Size = UDim2.new(0, 120, 0, 30), 
+        Position = UDim2.new(1, -130, 0, 5), 
+        BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    }, mainFrame)
+    createUI("UICorner", {CornerRadius = UDim.new(0, 10)}, profile)
+
+    -- Kullanıcı Profil Fotoğrafı
+    local userId = p.UserId
+    local thumbType = Enum.ThumbnailType.HeadShot
+    local thumbSize = Enum.ThumbnailSize.Size48x48
+    local content, isReady = game.Players:GetUserThumbnailAsync(userId, thumbType, thumbSize)
+
+    local profileImage = createUI("ImageLabel", {
+        Size = UDim2.new(0, 25, 0, 25), 
+        Position = UDim2.new(0, 2, 0, 2),
+        Image = content, 
+        BackgroundTransparency = 1
+    }, profile)
+
+    createUI("TextLabel", {
+        Size = UDim2.new(1, -30, 1, 0), 
+        Position = UDim2.new(0, 30, 0, 0),
+        Text = p.Name, 
+        TextSize = 14, 
+        TextColor3 = Color3.new(1, 1, 1), 
+        BackgroundTransparency = 1
+    }, profile)
+
+    -- Sekmeler ve Sayfalar
+    local tabs = {"Özellikler", "Ayarlar"}
+    local pages = {}
+
+    for i, name in ipairs(tabs) do
+        local tab = createUI("TextButton", {
+            Size = UDim2.new(0, 140, 0, 30), 
+            Position = UDim2.new(0, 10 + (i-1) * 140, 0, 40),
+            Text = name, 
+            BackgroundColor3 = Color3.fromRGB(50, 50, 50), 
+            TextColor3 = Color3.new(1, 1, 1)
+        }, mainFrame)
+        createUI("UICorner", {CornerRadius = UDim.new(0, 8)}, tab)
+
+        local page = createUI("Frame", {
+            Size = UDim2.new(1, -20, 1, -80), 
+            Position = UDim2.new(0, 10, 0, 80),
+            BackgroundTransparency = 1, 
+            Visible = i == 1
+        }, mainFrame)
+        pages[i] = page
+
+        tab.MouseButton1Click:Connect(function()
+            for j, p in ipairs(pages) do p.Visible = (j == i) end
+        end)
+    end
+
+    -- Duvardan Geçme
+    local function toggleWallPass(state)
+        local char = p.Character or p.CharacterAdded:Wait()
+        for _, part in ipairs(char:GetDescendants()) do
+            if part:IsA("BasePart") then
+                part.CanCollide = not state
+            end
+        end
+    end
+
+    -- Sınırsız Zıplama
+    local infiniteJump = false
+    uis.JumpRequest:Connect(function()
+        if infiniteJump then
+            p.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
+        end
     end)
-end
 
--- Duvardan Geçme
-local function toggleWallPass(state)
-    local char = p.Character or p.CharacterAdded:Wait()
-    for _, part in ipairs(char:GetDescendants()) do
-        if part:IsA("BasePart") then
-            part.CanCollide = not state
+    local function toggleInfiniteJump(state)
+        infiniteJump = state
+    end
+
+    -- Tıkladığın Yere Işınlanma
+    local teleportEnabled = false
+    local function toggleTeleport(state)
+        teleportEnabled = state
+    end
+
+    mouse.Button1Down:Connect(function()
+        if teleportEnabled then
+            if mouse.Target then
+                p.Character:MoveTo(mouse.Hit.p)
+            end
         end
-    end
-end
+    end)
 
--- Sınırsız Zıplama
-local infiniteJump = false
-uis.JumpRequest:Connect(function()
-    if infiniteJump then
-        p.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
-    end
-end)
-
-local function toggleInfiniteJump(state)
-    infiniteJump = state
-end
-
--- Tıkladığın Yere Işınlanma
-local teleportEnabled = false
-local function toggleTeleport(state)
-    teleportEnabled = state
-end
-
-mouse.Button1Down:Connect(function()
-    if teleportEnabled then
-        if mouse.Target then
-            p.Character:MoveTo(mouse.Hit.p)
-        end
-    end
-end)
-
--- ESP Özelliği
-local function toggleESP(state)
-    for _, v in pairs(game.Players:GetPlayers()) do
-        if v ~= p then
-            if state then
-                Instance.new("Highlight", v.Character or v.CharacterAdded:Wait()).FillColor = Color3.fromRGB(255, 0, 0)
-            else
-                for _, h in pairs(v.Character:GetChildren()) do
-                    if h:IsA("Highlight") then h:Destroy() end
+    -- ESP Özelliği
+    local function toggleESP(state)
+        for _, v in pairs(game.Players:GetPlayers()) do
+            if v ~= p then
+                if state then
+                    Instance.new("Highlight", v.Character or v.CharacterAdded:Wait()).FillColor = Color3.fromRGB(255, 0, 0)
+                else
+                    for _, h in pairs(v.Character:GetChildren()) do
+                        if h:IsA("Highlight") then h:Destroy() end
+                    end
                 end
             end
         end
     end
-end
 
--- Özellik Butonları (Fullbright kaldırıldı)
-local buttons = {
-    {"Duvardan Geçme", toggleWallPass},
-    {"Sınırsız Zıplama", toggleInfiniteJump},
-    {"Işınlanma", toggleTeleport},
-    {"ESP", toggleESP}
-}
+    -- Özellik Butonları
+    local buttons = {
+        {"Duvardan Geçme", toggleWallPass},
+        {"Sınırsız Zıplama", toggleInfiniteJump},
+        {"Işınlanma", toggleTeleport},
+        {"ESP", toggleESP}
+    }
 
--- Butonları oluştur
-for i, v in ipairs(buttons) do
-    local btn = createUI("TextButton", {
-        Size = UDim2.new(0, 270, 0, 40), 
-        Position = UDim2.new(0, 15, 0, 10 + (i-1) * 50),
-        BackgroundColor3 = Color3.fromRGB(80, 150, 220),
-        BackgroundTransparency = 0.3,
-        Text = v[1], 
-        TextSize = 14, 
-        TextColor3 = Color3.new(1, 1, 1)
-    }, pages[1])
-    createUI("UICorner", {CornerRadius = UDim.new(0, 8)}, btn)
+    -- Butonları oluştur
+    for i, v in ipairs(buttons) do
+        local btn = createUI("TextButton", {
+            Size = UDim2.new(0, 270, 0, 40), 
+            Position = UDim2.new(0, 15, 0, 10 + (i-1) * 50),
+            BackgroundColor3 = Color3.fromRGB(50, 50, 50), 
+            Text = v[1], 
+            TextSize = 14, 
+            TextColor3 = Color3.new(1, 1, 1)
+        }, pages[1])
+        createUI("UICorner", {CornerRadius = UDim.new(0, 8)}, btn)
 
-    local active = false
-    btn.MouseButton1Click:Connect(function()
-        active = not active
-        btn.BackgroundColor3 = active and Color3.fromRGB(0, 200, 255) or Color3.fromRGB(80, 150, 220)
-        v[2](active)
+        local active = false
+        btn.MouseButton1Click:Connect(function()
+            active = not active
+            btn.BackgroundColor3 = active and Color3.fromRGB(0, 170, 0) or Color3.fromRGB(50, 50, 50)
+            v[2](active)
+        end)
+    end
+
+    -- Ayarlar Sekmesi: Boyut Ayarlama
+    local function createInputBox(pos, default, callback, labelText)
+        local container = createUI("Frame", {
+            Size = UDim2.new(0, 100, 0, 50), 
+            Position = pos, 
+            BackgroundTransparency = 1
+        }, pages[2])
+
+        local box = createUI("TextBox", {
+            Size = UDim2.new(0, 80, 0, 30), 
+            Position = UDim2.new(0, 0, 0, 0),
+            Text = tostring(default), 
+            BackgroundColor3 = Color3.fromRGB(50, 50, 50), 
+            TextColor3 = Color3.new(1, 1, 1)
+        }, container)
+        createUI("UICorner", {CornerRadius = UDim.new(0, 8)}, box)
+
+        local label = createUI("TextLabel", {
+            Size = UDim2.new(0, 80, 0, 20), 
+            Position = UDim2.new(0, 0, 0, 30),
+            Text = labelText, 
+            TextSize = 12, 
+            TextColor3 = Color3.new(1, 1, 1), 
+            BackgroundTransparency = 1
+        }, container)
+
+        box.FocusLost:Connect(function()
+            local num = tonumber(box.Text)
+            if num then callback(num) end
+        end)
+    end
+
+    -- Genişlik ve Uzunluk ayarlama kutuları
+    createInputBox(UDim2.new(0, 20, 0, 40), 300, function(v) mainFrame.Size = UDim2.new(0, v, 0, mainFrame.Size.Y.Offset) end, "Genişlik")
+    createInputBox(UDim2.new(0, 150, 0, 40), 400, function(v) mainFrame.Size = UDim2.new(0, mainFrame.Size.X.Offset, 0, v) end, "Uzunluk")
+
+    -- Reset & Oyundan Çıkış
+    local function createGlobalButton(name, pos, action)
+        createUI("TextButton", {
+            Size = UDim2.new(0, 130, 0, 40), 
+            Position = pos, 
+            BackgroundColor3 = Color3.fromRGB(170, 0, 0),
+            Text = name, 
+            TextSize = 14, 
+            TextColor3 = Color3.new(1, 1, 1)
+        }, mainFrame).MouseButton1Click:Connect(action)
+    end
+
+    createGlobalButton("Reset", UDim2.new(0, 10, 1, -50), function() p.Character:BreakJoints() end)
+    createGlobalButton("Oyundan Çık", UDim2.new(0, 160, 1, -50), function() game:Shutdown() end)
+
+    -- Toggle butonunu oluştur ve göster
+    toggleButton = createUI("TextButton", {
+        Size = UDim2.new(0, 60, 0, 30), 
+        Position = UDim2.new(0, 10, 0, 10),
+        Text = "MENU", 
+        BackgroundColor3 = Color3.fromRGB(100, 50, 200),
+        TextColor3 = Color3.new(1, 1, 1),
+        Visible = true
+    }, gui)
+    createUI("UICorner", {CornerRadius = UDim.new(0, 8)}, toggleButton)
+
+    toggleButton.MouseButton1Click:Connect(function()
+        mainFrame.Visible = not mainFrame.Visible
+        toggleButton.Text = mainFrame.Visible and "KAPAT" or "MENU"
     end)
 end
 
--- Ayarlar Sekmesi: Boyut Ayarlama
-local function createInputBox(pos, default, callback, labelText)
-    local container = createUI("Frame", {
-        Size = UDim2.new(0, 100, 0, 50), 
-        Position = pos, 
-        BackgroundTransparency = 1
-    }, pages[2])
-
-    local box = createUI("TextBox", {
-        Size = UDim2.new(0, 80, 0, 30), 
-        Position = UDim2.new(0, 0, 0, 0),
-        Text = tostring(default), 
-        BackgroundColor3 = Color3.fromRGB(80, 150, 220),
-        BackgroundTransparency = 0.3,
-        TextColor3 = Color3.new(1, 1, 1)
-    }, container)
-    createUI("UICorner", {CornerRadius = UDim.new(0, 8)}, box)
-
-    local label = createUI("TextLabel", {
-        Size = UDim2.new(0, 80, 0, 20), 
-        Position = UDim2.new(0, 0, 0, 30),
-        Text = labelText, 
-        TextSize = 12, 
-        TextColor3 = Color3.new(1, 1, 1), 
-        BackgroundTransparency = 1
-    }, container)
-
-    box.FocusLost:Connect(function()
-        local num = tonumber(box.Text)
-        if num then callback(num) end
-    end)
+-- Anahtar kontrol fonksiyonu
+local function checkKey(key)
+    if usedKeys[key] then
+        errorLabel.Text = "Bu anahtar zaten kullanıldı!"
+        errorLabel.Visible = true
+        return false
+    end
+    
+    if key == VALID_KEY then
+        keyVerified = true
+        usedKeys[key] = true
+        onKeyVerified() -- Anahtar doğrulandı, GUI'yi oluştur
+        return true
+    else
+        errorLabel.Text = "Geçersiz anahtar!"
+        errorLabel.Visible = true
+        return false
+    end
 end
 
--- Genişlik ve Uzunluk ayarlama kutuları
-createInputBox(UDim2.new(0, 20, 0, 40), 300, function(v) frame.Size = UDim2.new(0, v, 0, frame.Size.Y.Offset) end, "Genişlik")
-createInputBox(UDim2.new(0, 150, 0, 40), 400, function(v) frame.Size = UDim2.new(0, frame.Size.X.Offset, 0, v) end, "Uzunluk")
+submitButton.MouseButton1Click:Connect(function()
+    checkKey(keyBox.Text)
+end)
 
--- Reset & Oyundan Çıkış
-local function createGlobalButton(name, pos, action)
-    createUI("TextButton", {
-        Size = UDim2.new(0, 130, 0, 40), 
-        Position = pos, 
-        BackgroundColor3 = Color3.fromRGB(170, 0, 0),
-        BackgroundTransparency = 0.3,
-        Text = name, 
-        TextSize = 14, 
-        TextColor3 = Color3.new(1, 1, 1)
-    }, frame).MouseButton1Click:Connect(action)
-end
-
-createGlobalButton("Reset", UDim2.new(0, 10, 1, -50), function() p.Character:BreakJoints() end)
-createGlobalButton("Oyundan Çık", UDim2.new(0, 160, 1, -50), function() game:Shutdown() end)
-
--- GUI Aç/Kapat Butonu (Parlak mor efektli)
-local toggleButton = createUI("TextButton", {
-    Size = UDim2.new(0, 60, 0, 30), 
-    Position = UDim2.new(0, 10, 0, 10),
-    Text = "TOGGLE", 
-    BackgroundColor3 = Color3.fromRGB(150, 50, 220),
-    TextColor3 = Color3.new(1, 1, 1),
-    TextStrokeColor3 = Color3.new(0, 0, 0),
-    TextStrokeTransparency = 0.5
-}, gui)
-createUI("UICorner", {CornerRadius = UDim.new(0, 8)}, toggleButton)
-
--- Parlaklık efekti için
-local glowEffect = createUI("ImageLabel", {
-    Size = UDim2.new(1, 10, 1, 10),
-    Position = UDim2.new(0, -5, 0, -5),
-    Image = "rbxassetid://5028851472", -- Parlama efekti
-    ImageColor3 = Color3.fromRGB(180, 80, 255),
-    ImageTransparency = 0.7,
-    ScaleType = Enum.ScaleType.Slice,
-    SliceCenter = Rect.new(100, 100, 100, 100),
-    BackgroundTransparency = 1,
-    ZIndex = -1
-}, toggleButton)
-
-toggleButton.MouseButton1Click:Connect(function()
-    frame.Visible = not frame.Visible
-    toggleButton.Text = frame.Visible and "KAPAT" or "AÇ"
+keyBox.FocusLost:Connect(function(enterPressed)
+    if enterPressed then
+        checkKey(keyBox.Text)
+    end
 end)
