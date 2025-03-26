@@ -11,22 +11,45 @@ local function createUI(class, props, parent)
     return e
 end
 
--- Ana Çerçeve
+-- Ana Çerçeve (Mavi/açık mavi gradient)
 local frame = createUI("Frame", {
-    Size = UDim2.new(0, 300, 0, 400), Position = UDim2.new(0.3, 0, 0.3, 0),
-    BackgroundColor3 = Color3.fromRGB(35, 35, 35), Draggable = true, Active = true
+    Size = UDim2.new(0, 300, 0, 400), 
+    Position = UDim2.new(0.3, 0, 0.3, 0),
+    BackgroundColor3 = Color3.fromRGB(35, 35, 35),
+    Draggable = true, 
+    Active = true
 }, gui)
+
+-- Gradient efekti ekle
+local gradient = createUI("UIGradient", {
+    Color = ColorSequence.new({
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(70, 130, 200)), -- Koyu mavi
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(150, 200, 255)) -- Açık mavi
+    }),
+    Rotation = 90
+}, frame)
 createUI("UICorner", {CornerRadius = UDim.new(0, 10)}, frame)
 
 -- ONYX Yazısı
 createUI("TextLabel", {
-    Size = UDim2.new(0, 100, 0, 30), Position = UDim2.new(0, 5, 0, 5),
-    Text = "ONYX", TextSize = 20, Font = Enum.Font.SourceSansBold, TextColor3 = Color3.new(1, 1, 1),
+    Size = UDim2.new(0, 100, 0, 30), 
+    Position = UDim2.new(0, 5, 0, 5),
+    Text = "ONYX", 
+    TextSize = 20, 
+    Font = Enum.Font.SourceSansBold, 
+    TextColor3 = Color3.new(1, 1, 1),
+    TextStrokeColor3 = Color3.new(0, 0, 0),
+    TextStrokeTransparency = 0.5,
     BackgroundTransparency = 1
 }, frame)
 
 -- Profil Bilgisi
-local profile = createUI("Frame", {Size = UDim2.new(0, 120, 0, 30), Position = UDim2.new(1, -130, 0, 5), BackgroundColor3 = Color3.fromRGB(50, 50, 50)}, frame)
+local profile = createUI("Frame", {
+    Size = UDim2.new(0, 120, 0, 30), 
+    Position = UDim2.new(1, -130, 0, 5), 
+    BackgroundColor3 = Color3.fromRGB(50, 50, 50),
+    BackgroundTransparency = 0.7
+}, frame)
 createUI("UICorner", {CornerRadius = UDim.new(0, 10)}, profile)
 
 -- Kullanıcı Profil Fotoğrafı
@@ -36,13 +59,19 @@ local thumbSize = Enum.ThumbnailSize.Size48x48
 local content, isReady = game.Players:GetUserThumbnailAsync(userId, thumbType, thumbSize)
 
 local profileImage = createUI("ImageLabel", {
-    Size = UDim2.new(0, 25, 0, 25), Position = UDim2.new(0, 2, 0, 2),
-    Image = content, BackgroundTransparency = 1
+    Size = UDim2.new(0, 25, 0, 25), 
+    Position = UDim2.new(0, 2, 0, 2),
+    Image = content, 
+    BackgroundTransparency = 1
 }, profile)
 
 createUI("TextLabel", {
-    Size = UDim2.new(1, -30, 1, 0), Position = UDim2.new(0, 30, 0, 0),
-    Text = p.Name, TextSize = 14, TextColor3 = Color3.new(1, 1, 1), BackgroundTransparency = 1
+    Size = UDim2.new(1, -30, 1, 0), 
+    Position = UDim2.new(0, 30, 0, 0),
+    Text = p.Name, 
+    TextSize = 14, 
+    TextColor3 = Color3.new(1, 1, 1), 
+    BackgroundTransparency = 1
 }, profile)
 
 -- Sekmeler ve Sayfalar
@@ -51,14 +80,20 @@ local pages = {}
 
 for i, name in ipairs(tabs) do
     local tab = createUI("TextButton", {
-        Size = UDim2.new(0, 140, 0, 30), Position = UDim2.new(0, 10 + (i-1) * 140, 0, 40),
-        Text = name, BackgroundColor3 = Color3.fromRGB(50, 50, 50), TextColor3 = Color3.new(1, 1, 1)
+        Size = UDim2.new(0, 140, 0, 30), 
+        Position = UDim2.new(0, 10 + (i-1) * 140, 0, 40),
+        Text = name, 
+        BackgroundColor3 = Color3.fromRGB(80, 150, 220),
+        BackgroundTransparency = 0.3,
+        TextColor3 = Color3.new(1, 1, 1)
     }, frame)
     createUI("UICorner", {CornerRadius = UDim.new(0, 8)}, tab)
 
     local page = createUI("Frame", {
-        Size = UDim2.new(1, -20, 1, -80), Position = UDim2.new(0, 10, 0, 80),
-        BackgroundTransparency = 1, Visible = i == 1
+        Size = UDim2.new(1, -20, 1, -80), 
+        Position = UDim2.new(0, 10, 0, 80),
+        BackgroundTransparency = 1, 
+        Visible = i == 1
     }, frame)
     pages[i] = page
 
@@ -103,57 +138,46 @@ mouse.Button1Down:Connect(function()
     end
 end)
 
--- Fullbright Özelliği
-local lighting = game:GetService("Lighting")
-local defaultAmbient = lighting.Ambient
-local defaultOutdoorAmbient = lighting.OutdoorAmbient
-local defaultBrightness = lighting.Brightness
-
-local function toggleFullbright(state)
-    if state then
-        lighting.Ambient = Color3.new(1, 1, 1)
-        lighting.OutdoorAmbient = Color3.new(1, 1, 1)
-        lighting.Brightness = 2
-    else
-        lighting.Ambient = defaultAmbient
-        lighting.OutdoorAmbient = defaultOutdoorAmbient
-        lighting.Brightness = defaultBrightness
+-- ESP Özelliği
+local function toggleESP(state)
+    for _, v in pairs(game.Players:GetPlayers()) do
+        if v ~= p then
+            if state then
+                Instance.new("Highlight", v.Character or v.CharacterAdded:Wait()).FillColor = Color3.fromRGB(255, 0, 0)
+            else
+                for _, h in pairs(v.Character:GetChildren()) do
+                    if h:IsA("Highlight") then h:Destroy() end
+                end
+            end
+        end
     end
 end
 
--- Özellik Butonları
+-- Özellik Butonları (Fullbright kaldırıldı)
 local buttons = {
     {"Duvardan Geçme", toggleWallPass},
     {"Sınırsız Zıplama", toggleInfiniteJump},
     {"Işınlanma", toggleTeleport},
-    {"ESP", function(s)
-        for _, v in pairs(game.Players:GetPlayers()) do
-            if v ~= p then
-                if s then
-                    Instance.new("Highlight", v.Character or v.CharacterAdded:Wait()).FillColor = Color3.fromRGB(255, 0, 0)
-                else
-                    for _, h in pairs(v.Character:GetChildren()) do
-                        if h:IsA("Highlight") then h:Destroy() end
-                    end
-                end
-            end
-        end
-    end},
-    {"Fullbright", toggleFullbright}
+    {"ESP", toggleESP}
 }
 
 -- Butonları oluştur
 for i, v in ipairs(buttons) do
     local btn = createUI("TextButton", {
-        Size = UDim2.new(0, 270, 0, 40), Position = UDim2.new(0, 15, 0, 10 + (i-1) * 50),
-        BackgroundColor3 = Color3.fromRGB(50, 50, 50), Text = v[1], TextSize = 14, TextColor3 = Color3.new(1, 1, 1)
+        Size = UDim2.new(0, 270, 0, 40), 
+        Position = UDim2.new(0, 15, 0, 10 + (i-1) * 50),
+        BackgroundColor3 = Color3.fromRGB(80, 150, 220),
+        BackgroundTransparency = 0.3,
+        Text = v[1], 
+        TextSize = 14, 
+        TextColor3 = Color3.new(1, 1, 1)
     }, pages[1])
     createUI("UICorner", {CornerRadius = UDim.new(0, 8)}, btn)
 
     local active = false
     btn.MouseButton1Click:Connect(function()
         active = not active
-        btn.BackgroundColor3 = active and Color3.fromRGB(0, 170, 0) or Color3.fromRGB(50, 50, 50)
+        btn.BackgroundColor3 = active and Color3.fromRGB(0, 200, 255) or Color3.fromRGB(80, 150, 220)
         v[2](active)
     end)
 end
@@ -161,18 +185,28 @@ end
 -- Ayarlar Sekmesi: Boyut Ayarlama
 local function createInputBox(pos, default, callback, labelText)
     local container = createUI("Frame", {
-        Size = UDim2.new(0, 100, 0, 50), Position = pos, BackgroundTransparency = 1
+        Size = UDim2.new(0, 100, 0, 50), 
+        Position = pos, 
+        BackgroundTransparency = 1
     }, pages[2])
 
     local box = createUI("TextBox", {
-        Size = UDim2.new(0, 80, 0, 30), Position = UDim2.new(0, 0, 0, 0),
-        Text = tostring(default), BackgroundColor3 = Color3.fromRGB(50, 50, 50), TextColor3 = Color3.new(1, 1, 1)
+        Size = UDim2.new(0, 80, 0, 30), 
+        Position = UDim2.new(0, 0, 0, 0),
+        Text = tostring(default), 
+        BackgroundColor3 = Color3.fromRGB(80, 150, 220),
+        BackgroundTransparency = 0.3,
+        TextColor3 = Color3.new(1, 1, 1)
     }, container)
     createUI("UICorner", {CornerRadius = UDim.new(0, 8)}, box)
 
     local label = createUI("TextLabel", {
-        Size = UDim2.new(0, 80, 0, 20), Position = UDim2.new(0, 0, 0, 30),
-        Text = labelText, TextSize = 12, TextColor3 = Color3.new(1, 1, 1), BackgroundTransparency = 1
+        Size = UDim2.new(0, 80, 0, 20), 
+        Position = UDim2.new(0, 0, 0, 30),
+        Text = labelText, 
+        TextSize = 12, 
+        TextColor3 = Color3.new(1, 1, 1), 
+        BackgroundTransparency = 1
     }, container)
 
     box.FocusLost:Connect(function()
@@ -188,20 +222,43 @@ createInputBox(UDim2.new(0, 150, 0, 40), 400, function(v) frame.Size = UDim2.new
 -- Reset & Oyundan Çıkış
 local function createGlobalButton(name, pos, action)
     createUI("TextButton", {
-        Size = UDim2.new(0, 130, 0, 40), Position = pos, BackgroundColor3 = Color3.fromRGB(170, 0, 0),
-        Text = name, TextSize = 14, TextColor3 = Color3.new(1, 1, 1)
+        Size = UDim2.new(0, 130, 0, 40), 
+        Position = pos, 
+        BackgroundColor3 = Color3.fromRGB(170, 0, 0),
+        BackgroundTransparency = 0.3,
+        Text = name, 
+        TextSize = 14, 
+        TextColor3 = Color3.new(1, 1, 1)
     }, frame).MouseButton1Click:Connect(action)
 end
 
 createGlobalButton("Reset", UDim2.new(0, 10, 1, -50), function() p.Character:BreakJoints() end)
 createGlobalButton("Oyundan Çık", UDim2.new(0, 160, 1, -50), function() game:Shutdown() end)
 
--- GUI Aç/Kapat Butonu
+-- GUI Aç/Kapat Butonu (Parlak mor efektli)
 local toggleButton = createUI("TextButton", {
-    Size = UDim2.new(0, 60, 0, 30), Position = UDim2.new(0, 10, 0, 10),
-    Text = "TOGGLE", BackgroundColor3 = Color3.fromRGB(100, 100, 100), TextColor3 = Color3.new(1, 1, 1)
+    Size = UDim2.new(0, 60, 0, 30), 
+    Position = UDim2.new(0, 10, 0, 10),
+    Text = "TOGGLE", 
+    BackgroundColor3 = Color3.fromRGB(150, 50, 220),
+    TextColor3 = Color3.new(1, 1, 1),
+    TextStrokeColor3 = Color3.new(0, 0, 0),
+    TextStrokeTransparency = 0.5
 }, gui)
 createUI("UICorner", {CornerRadius = UDim.new(0, 8)}, toggleButton)
+
+-- Parlaklık efekti için
+local glowEffect = createUI("ImageLabel", {
+    Size = UDim2.new(1, 10, 1, 10),
+    Position = UDim2.new(0, -5, 0, -5),
+    Image = "rbxassetid://5028851472", -- Parlama efekti
+    ImageColor3 = Color3.fromRGB(180, 80, 255),
+    ImageTransparency = 0.7,
+    ScaleType = Enum.ScaleType.Slice,
+    SliceCenter = Rect.new(100, 100, 100, 100),
+    BackgroundTransparency = 1,
+    ZIndex = -1
+}, toggleButton)
 
 toggleButton.MouseButton1Click:Connect(function()
     frame.Visible = not frame.Visible
