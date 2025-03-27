@@ -1,1 +1,335 @@
-([[This file was protected with MoonSc V3]]):gsub('.+', (function(a) _bIfATbiKMcDo = a; end)); return(function(r,...)local d;local h;local l;local t;local s;local o;local e=24915;local n=0;local _={};while n<839 do n=n+1;while n<0x118 and e%0x1f94<0xfca do n=n+1 e=(e-526)%21693 local f=n+e if(e%0x2cde)>=0x166f then e=(e*0x2d1)%0x86b2 while n<0xb1 and e%0x3358<0x19ac do n=n+1 e=(e-253)%40841 local h=n+e if(e%0x345e)>0x1a2f then e=(e*0x220)%0x5923 local e=45013 if not _[e]then _[e]=0x1 end elseif e%2~=0 then e=(e+0xf4)%0x1bc6 local e=51316 if not _[e]then _[e]=0x1 d=(not d)and _ENV or d;end else e=(e*0xde)%0x9ab2 n=n+1 local e=32367 if not _[e]then _[e]=0x1 o=tonumber;end end end elseif e%2~=0 then e=(e+0x37b)%0x5aa6 while n<0x364 and e%0x22f4<0x117a do n=n+1 e=(e*669)%30458 local f=n+e if(e%0x4162)<=0x20b1 then e=(e+0x9c)%0x670b local e=11841 if not _[e]then _[e]=0x1 l="\4\8\116\111\110\117\109\98\101\114\118\71\82\105\108\103\112\97\0\6\115\116\114\105\110\103\4\99\104\97\114\109\74\67\79\113\122\67\89\0\6\115\116\114\105\110\103\3\115\117\98\106\67\104\89\108\87\116\95\0\6\115\116\114\105\110\103\4\98\121\116\101\89\100\99\84\100\117\82\113\0\5\116\97\98\108\101\6\99\111\110\99\97\116\71\114\84\87\72\79\70\76\0\5\116\97\98\108\101\6\105\110\115\101\114\116\95\73\113\69\98\108\74\66\5";end elseif e%2~=0 then e=(e*0x23b)%0x5add local e=75678 if not _[e]then _[e]=0x1 end else e=(e-0x1e)%0x13c1 n=n+1 local e=40770 if not _[e]then _[e]=0x1 h=function(h)local e=0x01 local function _(n)e=e+n return h:sub(e-n,e-0x01)end while true do local n=_(0x01)if(n=="\5")then break end local e=t.byte(_(0x01))local e=_(e)if n=="\2"then e=s.vGRilgpa(e)elseif n=="\3"then e=e~="\0"elseif n=="\6"then d[e]=function(e,n)return r(8,nil,r,n,e)end elseif n=="\4"then e=d[e]elseif n=="\0"then e=d[e][_(t.byte(_(0x01)))];end local n=_(0x08)s[n]=e end end end end end else e=(e*0x2fb)%0x7976 n=n+1 while n<0x3b1 and e%0x4a3a<0x251d do n=n+1 e=(e+836)%48986 local h=n+e if(e%0x2d22)<0x1691 then e=(e-0x191)%0x2a04 local e=89082 if not _[e]then _[e]=0x1 s={};end elseif e%2~=0 then e=(e*0x2e1)%0xb3f3 local e=76240 if not _[e]then _[e]=0x1 t=string;end else e=(e*0x161)%0x3ddc n=n+1 local e=78598 if not _[e]then _[e]=0x1 d=getfenv and getfenv();end end end end end e=(e*786)%33880 end h(l);local n={};for e=0x0,0xff do local _=s.mJCOqzCY(e);n[e]=_;n[_]=e;end local function f(e)return n[e];end local t=(function(l,h)local r,_=0x01,0x10 local n={{},{},{}}local d=-0x01 local e=0x01 local t=l while true do n[0x03][s.jChYlWt_(h,e,(function()e=r+e return e-0x01 end)())]=(function()d=d+0x01 return d end)()if d==(0x0f)then d=""_=0x000 break end end local d=#h while e<d+0x01 do n[0x02][_]=s.jChYlWt_(h,e,(function()e=r+e return e-0x01 end)())_=_+0x01 if _%0x02==0x00 then _=0x00 s._IqEblJB(n[0x01],(f((((n[0x03][n[0x02][0x00]]or 0x00)*0x10)+(n[0x03][n[0x02][0x01]]or 0x00)+t)%0x100)));t=l+t;end end return s.GrTWHOFL(n[0x01])end);h(t(187,"#?N>:DStn4/K EId:/"));h(t(17,"N_l< su^A%qnt>8y8y8  1<G_>E<y^>yunnqnqq_%<^A ls8l_ll_<w>h%A8^8>Anqq^q_%Xsts^<^ 8<l<iy<99At^y>%tqnZq %%sq q ^sA<qRsyn8^AtA_>>t>nqqV% ^t:%up < sl<_^F<88><>lq%nKAl%)_u,%u_   ul%nsWnyl8l8 tnnuq<Aqu% q 8ssl>tun>_<y yl>qt_ny%n%>^%u%ul q_Ak^_ 8s8l8^nnnIsM <%8AA^nunsA<8<l_qk8>n>A>uqu%Aqu%l_qU8ut A<A<__%q%,^8y8=t/n_qA%n^ys^s_sul^<_2yqA%%y^>y>6ndq_%Autssussn<tlWy^a%%AAA8l><n%q>qlsys^ 8<8lllU+ _%%%Aq8ut^n>qs%l%ls_s<s^<%_8/8(y>%As^A>Kn<ns%Al ^ u%sn q<t: yy5y>lnut^nyqt<u"));local e=(-817+(function()local _,n=0,1;(function(n,e)n(e(e,e and n),e(n,n))end)(function(e,d)if _>156 then return d end _=_+1 n=(n*20)%1629 if(n%328)>164 then n=(n+58)%44530 return d(e(e,d)and e(e,d and e),e(e,e))else return e end return d end,function(d,e)if _>234 then return e end _=_+1 n=(n-340)%13723 if(n%340)<=170 then return d else return d(e(e,d),e(d,d))end return e(e(e,e and e),e(e,e))end)return n;end)())local f=s.PJkrdYAd or s.odMXnPkZ;local de=(getfenv)or(function()return _ENV end);local h=3;local m=1;local d=2;local l=4;local function _e(u,...)local a=t(e,"E<g+_>5z!h^D&rMW!5!4&w}j_J!+&wv}_nMMg>zz_%!>&B (_Nr>V_5h^rDg&<ZV_V!K&ClLg(MWmAUB_>!:&Vt(!5Wgg<5r^>!<&Qj3_2!e&3XZ!_&T&<bu_:!m&8xp&sr< Z?L_&!T&kTYhgM>++5>D_&WgM>+DsM<+z5M_<!m&G6v_m!e&p>h:j!<&XNV_P!F&137!h&j&3<H_x!s&j_g^<M+gD5zDgMW+>5M^_&+gW5&^WWgW+l<_b!:&2vo_:!0PM_O_<!)&J6H_6!;!35gCR!/&hAY_H!n<+5+DgM>g>5M!zW>gh2B__!I&c;nh_M>+!z__<!*&:8d_(! &RM9zW!=&zVs_Z!y<y5&^<Whg>zgD+!V&&3,_n!1d+5WDgMMg>zghgM<g_5hD>W+&0}!_}!I&G>>!h&+gWzg^MM>+gN/_z!O&0SXh5Mh++5h^gM&g>L<_2!q&S-T_N!/6_&Y_.!_&*BR_ r+ghz^^>!j&5bZ_ !%8+5W^&MW+g++_x!!&Sn _4rKgWz+^hW_gh5W^M!Z&h3y_.!8yz_hhg&h<+g1hh&<<?F4_O!*&LyH_.!h&(41_wr_g>z!D_&&g<5g^>M&&4F__R!c&-_>^MW>gr1+_<!-&hKy_x!XS55W^+W>++_&^WW++_%{_^!4&N}Lh_M>+!z_!+MWg&5WDgD+&(ZW_C!X&s>i^&M<g+5>^!MWg&5_^>Wg<_5>D!W_&<*/_b!J&Tm)_xh_:#U2_!!L&(67!hMM++z_^<MMg+5>_d!h&nLl_xr*g&5<DhM>+g_zD>Mh&7SD_9!-&3_&^WM+g<5&hpM&g<zh^>Wg&<os_m!x&fpY_3^_Jl8B_r!O&sX*!WMM+hz!!_M>++5h^zMMW<+c^D!1r>t4_Y!Ca55h^MM_k55hDgW++__+^!Mhg&5_!WM59+5&^<W+++4<_-!0&CBR_G_v+g_K_9!^&GRw_Vr_g>z!D_&g+>z_D_MWgMdf>2!Y&4d(h>W+g>zg!hMM+Vz>D_r+g>zgD5Mhg+5>_<!2&tik_8!Z&;+N!U!;&_wo_o!v<>__^hMr&Yd__=!/&R5z^<Mrg>a:_z!u&4vih_M>+!z_!gMW+!k=>^!N&Rij!W&M<h>!5,r+jh>+h_&>sr_h!M&>M(_!!Wr+(z_>!&&_Yh_M!hr^&R<x_.!n&(_<^MM<g!z_^<WgMJ5z^hWggh5M5M^MMMFd>5!#&Y.(!gM<g+5D^zWggWz>^MM_<_zg^<MM++zX^<Wgg>5M^+Wh&<Sp_=!R&?(8_)z3WW()_^!i&jjZ!zMW+_5!^<Mryg5W^&M_&<.{_L!A&)xm_OMh.qHn_!!6&f%#!zM>+__r^WW>++5>_<!,&NP2_8!)&P>M!0!C&^Ab_O!7uz5>D_r+g>zgD5Mhg+5>_<!I&f,9_;!J&x>h!q!-&zk(_f!Og5zg^WMr<g_z!g!FMzuZ_B!V<_5!^hW+M155^hM&g>g#DzM<++glDIWggWz_^>M++_5>^_^V+z5hD_M!MF_r^WMWgM>+^>M+M7>5z+!<&8sP_:!e&,_}^>&m&<CJ_j!R&,sy_O!/&{ku>h!%&j#/!rMWgW5Mh+M>g+>Wh+W_+g5h^MMz++_!^hM_g_5>^M&<+_z_Dg!+&2#<_A!I&t.0_L_fgg_1_<!-&l/t_Z!d&.+_*(!<&3{u_/!v&)xRz_&G&Qm!_f!(&b>_^>W!+_>+^hW^g>B.__!p&kal!5MWgMz__%!z&JVe_.&+gW5M^MM>g+z__<!R&#VG_u!,&lg&!#!Rr<*{_(!8kr5WD>W+g>_gD>W_+_5W^MD<Z+5&^hM+gD/Q_r!c&9-ChWMg3h55!<r_gg5h!D&rg+__^W!>&<=4_p!n!53L_J!1&<me_3!-rg#W_{!F&=+&_b!Y&e<g>z!v&sO=!5!8&q A55hh&Rdu_J!5&ji<_nDh&6A_!5!c&?{X_5!f&<mn__&5&VNp_x!z&?w<_H!:z+GX_f!C&<ji_q!jrg+z_4!{&qg&_X!i&PgBFr!Y&):Q_G!KrR6}58h^&8s}_G!}&fg+_Xhg&Wp;_<!KM&{C_?!QMp<__T!<&=%<_eD5&B<g>+!y&+t15h!J&*,y_eh!&s2<_o!+&o(g_y^8&^%v_g!n&0) z_!;&K>>_w!g&V?g_3!g&Y<gDW!u&+qB5>!A&{q#_.hr&dk__N!,&8O{_,!a&^A}_>!K&sQ7_b!%rg<__s!5&Bg<_u!K&-g->_!7&5}Z_5!,&<yk>g!h&Ldz_A!r&ltQ_8^Arh3C_!!m&6G/55!4rg<+_}!^&Qgg_w!N&3s}r5!L&!cX_^!s&RbS_3!+&bJ5_X!S&%sg_uDfre0;_5!V&zVGzr!f&gD^_q!z&,3<_/!u&nOy>M!w&!,Z_z!N&kL=>g!W& Xh_0!_&0j=_x!;&51V_^!A&q N__!6rg<__J!D&w.g_6!L&cgb_r!H&DQH_D!*&<bP>gh<&C8&_KDD&.Bf_0hgr!kC_r!VMzdQ_N!;rg2+_6!M&O+D_k!O&m<g>5!4&WsIz+!(&y R_Lh+&6PD_c!W&bng_/hprg{w_^!Vr>vA_D!Brg/g_*!D&nHg_G!/&vgx>^!O&D{d_D!s&<;T>ghg&xL&_N!W&VN=_mhg!hye_r!s&&#1_:!Crgq^_.!M&/}W_-!Z&l<g>h!R&W7u_!!L&y4y_O!r&F3D_6!W&Qfg_}hs&!c0_^!Frz(j_D!JrgC!_6!D&Z<5_J!=&Ago>5!H&D8m_D!RW!ki>gh+&{R&_O!>&wP%_ohgr+SU_r!j&>=L_F!)rg<+_%!M&O%>_p!2&vSB0<!U&D;s_M!c&g:.>OhH&Je^_7!^& -D_=D-&W62_^!4r+,u>&!%&=1M_u!D&=m5_4!f&tm}_!!P&!wQ_D!1&geu_v!D&lVh_:!z&Zov_Ohgr^)._^!Xrg.t_0!s&C_z_O!D&iS:_q!<&I<gM+!U&&-i5D!n&ekO5=!g&v(&_X!&&-G<_%hgrzio_r!8WDHG_S!1rgY__x!M&cg__0!m&P)J>o!a&&u6_M!*&gN->V!z&p6D_8h<&0 &_O!*r_of_&!x&!OY_j!8&3z__s!h&RU&_0!<&T=n>M!V&hVX_z!o&wQY>gh<&?N^_2h^&aY-_I!U&>F2_D!:&YwZ_z!4rg0^_s!&&j9g_j!*&Jgx_^!B&&c}_&!(&<ac>gh>&fNr_cD<&bBO_Hhg&5Uq_M!/WWpI_(!(rgR+_3!W& +D_X!B&S<g_>!Cra.1_h!w&Htc_jh>&;H&_2he&9sg_lhK&h6b_D!wr>QT_&!urgY+_*!&&?3g_?!}&Xgc>5!y&&6X_&!S&<:)>ghh&apr_9DD&aii_ehgr+yi_M!aM_XT_u!Qrg<+_#!W&j+D_J!u&i<gz!!wrnwc5_!L&vTK_K!M&n:&_RhR&cmg_ih(&rk%_D!irzl2_&!fWSb&_a!D&jZM_o^M&R+}>h!R&DTn!<!(vy*O>gh!&,V&_GhD&L?p_*^irr8N_&!i&&80!g!/M z<_:!&&89&_YDg&:<iz_!8&D/a!g!9&&IT>gh>& 2&_Lh5&32._B^)&zTG_&!R&&Ovz!!Org95_y!r&.+z_0!x&}<g_5!A&MYQzM!C&kX{>gh&&f=W_.!+&lQo_?!}&hyO_&!C&Wye_g!pr;<&_U!D&d<M_G!&&K+7_M!n&D8#z*!aW<NF_(h^&YL&_=!!&?d2_n! &WOa_h!1&&jG_<!F&#FW_u!h&/uz_G!Z&;<g>+!q&^6Z5r!H&Tu#_3hD&#ZD_J!:&vHz_Zhgr!.*_&!9&g(;_:!;MH<>_j!&&R?&_t!<&l<g>_!S&rOPz<!0&9Um>g!+&?6M_Ch_&Pi4_ThgrDmd_W!ZWDSp_f!:rg<k_.h6&/C>_1!w&Qvq><!X&&2S>v!x&gqJ>)!<&*tD_{h>&-e&_Lhg!^J{_&!R&gIk_J!/MI<z_*!&&jc&_H!<&T<g_>!y&rvYzD!k&fAL>g!>&-yM_b&7&4t7_(hgrgc9_W!4WDbN_Y!urg/<_OhH&e/5_d!e&ea0>h!N&&Sb>m!c&g}K>th&&KCD_bhz&Tc&_RD8!gU;_D!wrWBo5W!:W=&g_;!D& KM_,hh&S+w&h!*&DpZ!<!2M^46>g!^&jI&_Zh5&c o_R^or5t?_&!%&&dez!!wrg<>_4!r&kaD_1!b&8<g_r!3&M{Z_D!b&=no>gh>&mjW_s!D&2cb_j!e&gL)_&!K&WwU_g!?rV+__A!D&yy^_l!&&%<g>&!U&&6K>5!{&AH:52!>&v=&_l!&&OL<_0hg&_2._r!)W<Bb_{!-rg<z_;!M&Y+<_Q!N&*<g>^!}&Wsfz<!o&TiL_F!z&Cx&_X!W&mxg_?hQr&l?_D!VrML3_&!L&U+5_V!&&/)!_m!%&x#O^_!K&hqq_&!%&gCG_V!z&wa^_2!z&;.k_Ahgrziv_D!crgFm_J!y&N}r_X!&&jcJ_U!<&v<g>h!2&rmy5D!C&t%L5j!g&L3r_)!r&IG<_xhgr+I4_M!FWDo4_L!nrg<+_4!W&qg._f!s&(pnD>!Y&rs1_W!u&gBd>K!^&%u&_7h<&}Sr_8!(&MKH_r!4&hLv_a!F&Fwh_O!^&.:r_;!<&jpb_z!=&^:d_z!-&4C/>gh&&d*D_3^!&,kn_q!tr<#d_&!o&Pfo_5!Nrg&^_b!r&}%g_=!t&Tgl_g!?&rsk_r!I&</p>g!g&#dM_oD<&B*(_BhgrgXa_W!br_xi_1!arg<D_1hF&V+D_B!,&e<g_r!6r<Pm_>!6&uIf_3!_&7Cr_Sh<&BHg_*hp>gJ7_&!Yr>AY_r!Yrg<z_4!r&4Rg_n!G&egq>!!p&rqJ_r!I&<KF>g!z&txM_}DD&eIs_Uhg&5ZJ_W!GNHJq_7!nrg<5_Oho&6+D_Q!A&0<g>^!Tr<:Fz>!K&xt%_,85&9er_;h<&Z}g_Xh.r&:d_&!;rz/Q_r!nWC&g_/!&&11M_2h!&)+J&h!a&&Qq!<!;M^t*>gh&&#Ur_,h5&;s}_S^Ir!Fm_r!H&rQuz!!Crg<5_H!M&k+z_B!R&-<g>>!O&W3p_h!)&Paw>gh!&:<a_BD+&S20_U!1&+?b_r!1raF{_g!/r{+__6!&&xv^_L!r&(<g_&!9&r;6>5!C&A8G5(h>&AAr_c!r&Gt<_.hgrzj?_M!;W<bH_.!yrg<r_.!W&y+<_l!c&(<g_z!:rBwtz<!R&w%d_=h!&xAr_,hx&{}g_yh8r&BG_&!VrMR:_r!Y&9+5_7!r&,%!_G!G&t?/^_!d&^=q_r!*&gAY_y!!&i=D_-!z&7#8_1hg&&2C_&!3rg )_Q!G&Saz_ !r&o26_U!<&x<g>5!w&MZS5D!J&-GU5N!W&0IM_J!M&Ob<_}hgr&J*_W!LWD16_#!6rg<+_KhF&agf_t!A&YwGD>!G&MnA>=!Z&gtn>d!+&ovr_Ih<&,2M_R!ir#uN_M!B&^8A_1! &J<h_k!D&L3M_j!<&kZ:_r!0&DHx_z!}&t-P>g!+&ub&_Qh^&o?A_v!9r5Oe_r!q&v:{_z!Brg&^_2!M&:Hg_n!4&Pg8>r!q&M92_M!O&<mU>g!z&sAW_KD<&23S_Phgr+sS>n!oWWfu_e!2rg*h_eh<&}+D_V!3&p<g>5!Lrgbl!N!%& 7l_d!g&yoM_ohg&*?g_*hK>g7s_r!jr>ab_M!xrg<__I!M&c8g_-!v&6gp>,!w&M/c_M!l&<?p>g!W&fkW_pDD&SR4_shg&_i >6!sM_cw_j!4rgOM_nh<&X+D_=!y&*<g_&!*rgF.z^!J&00x_3m5&=HM_0hg&Hlg_(h7r&F*_r!srz2j_M!vW2&g_U!r&1#M_:hh&}+J&h!x&rZb!<!Lc_nG>g!^&f4M_Rh5&4:t_P^irhVx_M!O&M2pz!!Qrg<&_%!W&(Y+_e!L&T<g_z!HrbL6_h!3&Tm4>g!h&w<<_y!h&mi)_t!?r<Kb_M!kr<49_g!=r/<&_%!r&F<M_c!M&.+Gz^!w&rK*z{!vW</,z1!&&{Tr_ch+&0+r_T!BrrT6_M!I&!.d_y!6&ZyM_b!D&i7M_Q!g&F(G_!!.&&X9_r!-&jTk_5<D&k2M_b!_&}w<_*!!&71l^W!K&caV_!!p&X4V_OMW&QcQ_Z!&&jaj_y!lgWOZ_}!H&zm0_%!o&{5W_{!f&.(5_7!c&:U4^W!k&7xo_F!c&d)7_(MW&JV4_K!<&,JP_d!cgW:._a!.&g1%_w!n&H5W_F!k&6Cr_%!j&185rD!{&Wf3_g!Y&<jH_>!{&:5W_F!t&)C__;!i&O3L^W!P&9.w_D!a&mT:_CMW&t(B_*!+&,NL_=!ZgWok_*!S&>fm_;!x&H5W_f!X&GnM_V!1&wgirW!er6,P_^!-L>OK5mh^&7<u_Nho&6_+_w!5>D9I>g!f&?Z}_<!(&gYe_;MW&)ep_6!W&N6V_V!CgWJY_}!q&hxX_s!4&*^M_sh?&H<g_c!<&ogP_!!Ur}no_h!Qrrda5Lh^&?<L_2hb&j_+_U!5>DA1>g!T&+1U_<!R&gSi_cMW&.4a_(!W&.ev_x!mgW#Z_P!-&hFT_k!c&phz_#h9&L<g_d!<&j3P>5!u&dkK_<!-&?{k_U!>&Ye8_Y!<&bbx_u!J&_YJ_,!(<_5>D!W_&>x0_B!q&i5+_V!8&(J?_j!l&V=9__!?&<Lw_<!%&kaw5fhr&e*<_)!<&UB<_a!V&M/Q_J!v&g,k_<!)&V<g_O!t&eZ<_}!v&/oZ_L!p&n1s__!/&ARu_Z!!&Lpv_u&hgMz+D_M<gM5+^>!x&5Q-_;!=<A5<DgM>gMz__s!+&}),_)MMg>zz_J!>&H8S_pW#g<5hDgW+&MaF_q!,rgrg_T!+&.X<_Q!F&.g._+!B&+Kp_+!R&+q:_/!&&o2__b!:&LaZ_b!T&MtB_+!y&gP/_g!,rg?__i!_&Hp__l!}&IwI>_!y&>Bb_<!q&oZx_Q!M&Ff__n!g&iY5_c!_65%l_4!Q&hIC_<!m&x!+_9!+&%(z_2!!&-}5XD!{&_X*_!!*&<?(_g!,&__5_O!t&%(!_k!<&P<p>&!c&+Ck_g!)&gOR_ !(&6G+_(!g&Bxk_s!nz+FY_L!,&<vC_a!H&+Hp_)!C&}S>_X!n&}8V>g!6&Oud!zM>!+^z^>Wg++5hD^^bg<5M^<M!+_5<Dg^<&X<M_7!G&o_gD>^4g<5M^<M!+_5<Dg^1+^5<D_M>gMgm^DW>g&5&^<MM!_D<^&M_!_D<5<!S&_uB_w!d<_5>D!W_&+X<_H!z&=Aa_Sr5ghz+^hMgg&5>>M!u&jGk_.&<&n.<_c!-&pPl_}!m_rte_<!o&<f7_9!P&5g5_J!<&/t>_U!<&wY<_c!_V5kl_4!C&>*0_<!1&__5_%!n&wyD_f!<&Zwy!<!8&<.=_<!X&qOxzOMz&Lo<_8!+&JTg_m!Nrg%#_<!O&<FK_ !TWO<D_1!<&mw>_c!_&/w}>>!(&<-Q_H!6&Lj%_p!r&y{<_V!g&TT?_v!Os<Ax_<!k&gN2_L!y&5Hz_v!)&l<z_;!<&eL<_c!_Z5no_w!*rzxt_<!T&9gg_j!<&QA<_l!0&4o2W<!H&<2q_+!?&H3)_*!z&bR<_t!Q&Il1_s^sr</4_<!I&oS:__!T&*wr_Q!<&L}__.!H&sKo>D!x&<9n_<!J&<6x_vhh&lQ<_{!<&02J_2!nrhs#_<!u&g C_%!,&__5_6!F&}<r_Q!<&Kl !<!T&<-)_<!*&k{{z{Mz&VC<_Z!+&q;<_u!4rzT=_<!P&<nq_P!0Wv<>_s!<&*m>_b!_&3?X_!!G&<%q_k!;&3ew_fh<&qI<_n!g&tTf_K!(z+B0_e!3&<{w_9!m&<RQ_Y! &=T<_-!q&17{__!0&Zo0h_M>+!z__z!f&Zoj_5&r&H9(_#!5&2j<_H!A&2H_!5!S&CG0_5!=&<YK_A&<&wR<_F!A&jwv_v!Kq<U0_g!-&<aS_-!UMfz<_S!g&OQg_X!<&i/)zM!I&<xx_g!k&< =_B++&nFI_?!<&F,)_A!<&IGC_T!e<_2B_f!4&<NT_I!)&3uQ_pDh)=?%_5!1&9Kk!<M++_5hD5M>&?Lh_i!(&}>+^hW^g>+_z!W!W_+!_<!u&LT _1!)& __!V!F&!%?_4!fU!5>^<M_<+5!^WW_&UfD_{!x&n_h6><W!_D<^MM&g<5M^rM<&I/__7!4&*_>^MW>grY<_Y!9&yvQ_ITtg<_P_<!{&2=2_c!Q&U+My3! &rVC_J!4<_5!D>Mrgg5M^<Mhg&>_DhW;g>-u_h!%&Bxvh_M>+!z_!&M<gg5>^&!R&rn8_U!d-WzhD>MMg_5<^M^I!+!zp_+<gDs<_o!L&9:J_l_3gg_d_<!3&H0H_3!4&wg&!%!{&_4i_I!ogz5<^rM>&<BB_/!e&nHB_IDM3K;._h!X&NwK!_Wgg<5z^zM<gg5&^>!<&FRX_(!*&B9ahM&?&n<>_a!:&C_z^>W_<>z+^>Wg<_5!D>Mrgg5M^<Mhg&_<D+WhgM5+_n!h&/jV_7&zg>5M^h_>>W5&^hMD&<Y)_f!/&eSj_/rh 21Z__!a&f u!W&M<h>!_<!p&KIX_a! &G>_Qc!0&_p%_/!G%r_>!Mr>&<Au_J!l&fl=_j&M2U6<_B!6&s76_3!:W_&U_<!t&u?1_B!Y&ugM!-!b&>wv_U!0<g5>D+M>+_xo_!!s&TB3h_M>+!z_h+Mh+^5>_A!z&.vj_Yr5ghz+^hMgg&5>_th<&koO_8&rgWz>D+M>jgz>D_W_gW5Mz<&+g&5h^+MD&.y5_(!k&m_+^WM&gWzgz+!<&L{t_-!N&8vm_q!G&< 6_c!=& Hd!0Mk!L?<_#!k&)Qp_A!Nr__9_u!_&uXC_#r>A_5h^r!<&mj*_k!L&O:w5_&-&<yu_-!X&9ZH_yM_OCSS__!G&sbU!5MWgMz__m!D&Ff#_n&^+>5rDjrgg>z<D>M>++z__x!z&QeP_fr>+^z>^MM&+>5D_QhV&C2(_N&gg<5+^DMz+g5WD>MMg__+^WM&gWzgz+!+&<bF__!p&c;Fh+Mh+^5>_m!^&J0e_0&hgr5<^zM>p&5<^gM>g&1<_/!:&RN9_{!Fih&n_}!M&=vI_Pr+gWz>DgM+g>>+^<MM++_g^WM&g_x<_w!Q&(A=_}!uW__Z_e!_&9R _*r_g>z!D_!<&dbq_x!y&wBah_&;&:K>_9!e&O_5DgM<gr5>_<!;&Nb _m!6^4zm!O!s&>db_9!J<>__^hMrWgl<_f!G&S{?_{!1MN_R_<!y&x/1_t!Y_o_<!O!A&zsi_.!Nq<zh^<Wgg&5<Dg!1r5#/_*!*/g5<^+MDgzzg^WW>gM5_h_Wgg<5MD+W3g<zg^>MMg+zh_%!D&1w6_A&g+>z_D_MWgM+<!_MW+z5M_<!d&#iv_F!:&0.%!6!l&+3l_3!7gM5>Dz!?&rB%_c!d<_5!D>Mrgg5M^<Mhg&>+^hW^g>PY_^!F& ;1h_M>+!z_!gW>+_z_^WMM&+w,_n!W&bsS_.&_+>z5^<Wgg_5<^M^Yez5>f+gzgr5>_d!&&kXp_.&+gWzg^MM>+g>g^<M_ghz>D+!(&_a._F!BJM5<^rM>&<(X_l!2&oNN9)WgkobH_!!(&3Yxh>&hV+5WDgMMg>zg_<!H&8?}_?!m&Rzh!6!9&5vV_q!X<>z+^>Wgsh5__i!z&ndo_erxg&5<DhM>+gz+_8h_&}tx_dr+!_D<^M__z<zgD+__z<z^52r^!_D<D6M&g<5r^<!<&-7n_*!d&;u2+GDW&).^_.!(&L>_^>W!+__+^WM&gWzgz+!e&5Fa_v!ZghzK^<Mh+gz+_}!z&yyY_/M5+g5W^rrgsz_g_ !>&GC._v&hgr5<^zM>&PBD_a!J& &+r5W^g>5&^&MhgD5&^>Wg&ZU!_v!e&T>f^WW+ghz_^hMWgMK<z+D+W+++z+D+h++W_K!z&vfs_%&+gW5M^MM>g+z__,!+&p(;_G&><+>Q_<!y&S{._6! &;_h!L!<&fXn_x!t&R;e^h&,D&=<_ !I&7L<_J!J&8T0_u!Z&Q+9>g!n&#je>M!,WW7B_nh<&bt#_ !g&}e1_qhgrh*(_<!?W+j:_ !7&x<>_H!g&3j)_K!5& <g>g!?&+}-z>!K&0m}5j!<&16+_u!+&b+&_Lhg<Wat__!LM<Cm_6!argq5_c!>&#_+_e!w&n<g>z!(&5#O5<!}&%#=>gh>&nvz_1&>&qjw_L!orDL%_+!Z&z7O_g!brByz_2!g&sg&_-!+&B<g>z!i&+-vz>!;&ZnL5Hh>&:N+_q!+&k+&_khgr&Lw__!:<wnb_k!Yrg<g_8!>&Pg<_K!i&6<g_!!J&516hV!Y&O.e>g!5&HLz_0^<&3Q*_L!:&<k(_+!F&zb/_g!;rl<!_%!g&2_W_J!+&#<gh_!L&+p85j!/&NH)5PhI&ip+_J!+&a_&_9hg&&,L__!,Wz8;_O!Xrg<+_O!>&)+z_B!.&(<g_!!l&5HNzz!j&X}H_a!&&#U+_l!5&ykg_)h2&_1n_g!3M^L3_+!3WZ&g_2!g&Z<<_)^D&#+Gcg!*&gCl_g!PMD-,zs_g&u%g_ohM&I+W_a!;0<um_+!f&+B(_q!Y&Z>!_8!%&t}+_N!g&LK6_h!R&?lo_<!T&uoC_shh&sY(_i!g&tUu_6hgr>2T_<!Kx_68_T!*&tJ!_T!g&c;t_N!<&G<g>5!C&+?N5_!7&BI 5uhK&bR+_F!+&A+&_Rhgr+.l__!:M</C_7! rgzM_X!>&cg>_A!?&ajH>D!B&+sa_>!e&gVy>Yhb&N9g_s&<&UT+_c!%&!AG_+!=&<yC_A!u&b<h_e!Q&AG+_1!<&c7f_!!c&icQ_g!o&3f#>g!&&T:<_U!D&Y=R_u!HHW#C_g!2&.eK_z!,rgO+_.!+&y+>_X!3&LgT><!2&+A(_+!:W&k7>ghr&.O__H^<&d#C_Bhg&gwC_>!Lr>Zo_4!1rg<&_7!5&Ag<_3!x&u<g_5!F&zm#>f!-&J-{_R<M&T(+_2!z&U.g_UhAr!x8_g!CM&1m_+!)rg%z_(!+&a+>_Y!R& gP>D!c&+xG_+!mW&BF>gh+&F1__i^<&NC3_(hgr_kA_>!}M+Ot_f!Org<<_s!5&Vg<_L!s&a<gz!!N&z/S5+!7&,aq_*!5&a6+_8!z&yKg_?hj&z-S_g!qsW :_+!GWO8M_.!g&(+<_dh5&w+m_z!i&gS/>r!kW6;)>ghD& #+_l!z&vKt_Q^u&!PZ_+!,&+v15z!ZMAz<_K!+&is+_v^W&q<lz_!P&gwq5z!2&+;m>ghD&9b+_f^{&Y%R_*^Vrr*,_+!v&+%ez&!srg<+_O!_&p_h_*!#&q<g_M!B&>O4!h!K&.Z=>g!z&Ln5_?&h&qaH_V!d&z%p_+!?&5mH_g!Pr/<&_.!g&C_^_l!+&,+J:g!#&g0{zh!p9h=Z_K&<&aV+_:!<&(,{_m!:M<VJ_%!3&+)O_<!j&Rmg_f!L&,Hg_a!f& <g>r!6&<*Fz+!n&*}i_N!D&3Bg_m!U&/G+_ShgrzSa_+!:W> S_w!PM9xr_X!+&n(+_(D&&l<g_W!V&_;05<!b&;V4>g_h&p1>_7hg&=x2_ hgrh78_5!%M<S(_F!#rg<__K!z&F<a_S!=&INl_5!C&+m4_z!b&gYf>?!M&m7g_)^&&}J+_vhgrDs*_+!qW>k9_P!2Ml#5_N!+& t+_sD&&w<ghW!s&_FN!h!q&yf >gh+&jS>_?^g&:OZ_dhgr!AZ_5!)M<#2_I!org<+_N!z&ug+_x!C&;V0_+!/&+A4_z!o&gwe>nhr&%sg_X&W&Xj+_bhgr^3i_+!xMdK-_X!KMiD._6!+&q(+_{&&&L<g_^!n&_vbh+!i&L;Y>ghz&;X>_Cr+&cI}_*hgr+a9_5!i<+B9_y!O&=2D_q!+&815_b!g&L<B>&! &g7d5^!p&+-x_,&<&jR+_C!<&nPp_S!J_5ys_(!C&+*/_g!-&cX!_X!<&1Lg_a!l&9<g>5!P&gL#!_!i&CG3_l!5&1U+_b!)&B1<_ZhgrgFj__!yM_n._N!yMXX^_.!_&9X__GD&&O<g><!)&>%K5<!1&se->gh>&G15_.^>&;q6_%!uQ>;8__!x&504_g!Vrc#>_d!+&x_<_a!_&*uj_!!K&_#n_C!y&C)/_vh!&-)<_0!_&kp<_m!/rZbT_<!p&_:1_s!HMT<g_8!<&bS<_Z&5&;<g_+!/&g;b_z!V&s4C5ah5&JYg_G!g&eX^_Y^t&!3m_g!9&gRI_>!Zrg<<_,!+&c:z_d!L&Lg/>h!o&+6j_+!eWr8b54!!&=K+_P!+&{c+_7hgWzd/__! &WH%_f!=Mm^z_n!_&Sk__t&z&egj>+!=&_KQ__!vr+?T_{!^&9U5_y!<&R3k_n!drQ}u_z!7&gma_w!v&sI!_l!!&Cx+_/!b&1;,>5!9&_ip_!!q&>wq_}hr&tu5_k!g&/wV_1hg<5n9_z!:MrN6_7!V&,Xr_y!!&8-Y_?!_&O<g_h!f&h7tz>!T&8ey54!5&dBh_6!h&u+&_phg&<q-_^!KM<y%_o!jrgo&_)!D&S.<_*!i&e<g_!!I&&425<!k&G9F>g+>&}tr_G!<&SG=_i!4&hF1_h!0&r}R_g!/r)<5_H!!&#g&_4!h&l<g_5!R&hjRz>!m&oH}5 h>&A0h_j!h&Q+&_mhg&r6H_^!pM<A:_I!ergv!_6!D&t+D_y!G&.<g>+! &&Bx5<!Z&m8u>gh+&xFr_aDD&bBc_3!V_5=O_h!4&raP_g!Pr/!^_-!!&P_W_e!h&F<c_!!{&!*v!r!8&_k(zj!z&Hq!_GDh& _h_P!t&^p6_h!m&p)._L!R&m<g_O!5&I9h_=!g&6cy>z!}&z(I_g!%&CfY>ghD&po!_q!D&#7m_K!iPWYe_h!f&TxJ_5!Crg<5_i!^&6+>_#!Q&sg-_&! &^mV_^!#W&bo>g!z&(QD_N&h&Q.L_thgrz1X_&!0&hR2_=!frg<h_;!r&H_h_A!?&}<g>D!)&Mj75<!j&C/=_e<M&vp^_X!M&ytg_1ha&&b7_h!BM&Xx_^!{rg<z_t!^&L+>_1!i&Jg*>H!1&^*x_^!NW&:1>ghD&K,D_C^<&e3F_7hg&Db%_&!Nr0(j_0!Yrg{+_*!r&-g<_:!v& <g>+!F&MC65<!6&8.o_qU5&*.^_i!M&wmg_vhZr&.X_h!4kWYv_^!(&0_M_v!^&f*__9!8&0gY>^!%&^P2_^!.igG7>.!r&C=h_lD<&l*^_4DK&^qP_h!7rru,_M!erg{5_9!^&Tgp_{!6&Ag/_r!3&^82_^!UW&xw>gh_&S9D_U&h&t4=_?hgr+sn_&!iqh.,_/!ergz^_f!r&2_h_{!3&s*n_<!O&^Zf_r!P&gbq>S!g&Boh_N&^&U{^_.D1rh3#_h!wWh8v!h!L&Xlr_9!^&;9-_F!B&6qQ>r!1&zko_^!L&<)-_Y!h&nGz_Z!g&A x_bhgr+2*_!!qpM9B_,!,rg<+_f!h&V+!_k!P&snOhh!T&z{S_h!8&<jT_G&z&Zm!_i!3&FAN_}hgWz1k_h!BPD7 _Y!T&:+5_c!^&U6z_:!Y&jlUM<!6&h*q_g!?&D1*__&5&6.v_th&&<X<_2!47<ly_M!n&gX0_(!%rg>5_s!W&P+M_ !n&XC?__!brAyw_,!I&>L%>g!z&H<<_9D>&0vA_H^Xr+//><!mr<{jz&!prg<&_*hg&Og<_/!j&m<g_+!Vr+Bd_!!w&sdw>gh&&j<__I^<&V P_7hgr+IU>>!RrKfX_J!w&e!W_Gh<&N<>_y!g&;<%>D!nrII95&!vr<=U>gh&&/<<_)D>&RQ?_A^o&!x6><!:r</pz&!arg<<_xhg&?g<_%!j&og7_D!Zr+jL_&!8Ph:x5I!_&V<+_?h+&0J!_JhXg^LV>+!AM> 9>+!IrgzD_1h_&ag<_?!6&S<g>&!,r>,H__!n&FVi_}h_&j<<_eh>&uig_Vh{r!Yb>w!UJW6x><!yrO?+_Gh8&%+<_t!r&X<g_5!4r<dU5T!m&H0B57!r&6<<_2h<&?_&_Xhg!hfO>g!x<+Y,_7!Hrg<!_9h+&->+_=!t& <g_<!jr_Nvh+!)&%O,_3!r&y<<_ih_&)Xg_Bhj&DjT>S!3M^nL><!jrgS!_}h<&0gb_q!e&XgP_D!Lr<yT><!sW&Tq>gh+&-<g_H&h&{fO_7hgr+CU>+!6XhSN_F!%rg^D_9h_&R_h_(!b&JXG_^!-r<vn>_!S&gco>T!&&G<1_s&^&a<<_p!w&^m*><!N&<B}_T!L&w<h_(!M&j<<_B!g&xU#>g!m&W8c_g!6&V%U>ghh& <u_T&_&Fe=_o!}3zxf><!Y&Yao_<!Xrg^+_4hg&Ug__9!9&Tg2><!7rgAk>g!-W&d3>gh^&I<+_F^<&lHR_Fhgr&mA>_!kW57C_G!s&l?h_.hg&m<__*!g&1<P__!yr<vd!<!PrgHA_1h+&,<g_8!M&/xj_I!tM<xb_W!7rgZ2_<!=&{LM_n!W&:%g_Y!?&i<g_+!lreivz+!=&N-9_fh+&X<<_0!%&HY__Phg&gRV>g!nW>8e_{!aM)<N_=hg&e<g_SD&&G<g>^!:r+x?!h!8&{/A>g_h&,<__Kh^&:QN_fhg&Do7>>!vAhoi_b!0rg:<_ih5&x<z_v!J&d#d_D!RrgPA>5!8&goe>,hz&.<<_}^&&}<g_(hgr^(H>g!*W>?:_s!-MSl<_mhg&6<g_HD&&,<gz+!or+H 5<!q&vCf>g!5&T<__N^>&H9b_%hg&zS6>>!4M<wR_?!srg<g_bh5&J+g_v!7&Qv3>h!BrgSS>5!}&gc,>Vhg&-<<_H&W&t<g_(DIrrtK><!dWh30!h!NM5h+_x!&&tZW_<!<&?_h_J!_85:f_l!O&WF<_<!i&__5_{!A& <A_<!<&P)8Wg!CrgBQ_3!%&Q}s_.^g&J<g_N!<&6Ov_dh7M^ia><!:rM4O>g!#&4<A_yhg&uv<_l!q&IY1>D!Y&W,k>g!1&g{9_{h>&dX!_?!&&2XW_Y^Qrz8)>L!K&M?f>W!JM?Lh_/hA&?<-_Kr<&4H5rD!urgb7_^!B&<KK_g!8&f5W_y!7&QF!_a!N&}xt^W!V&7PX_&!P&Btb_VW_&c<T_ahg&9p<_d!pMz7L_&!H&HN*_U!C&5&D_p!h&c&z_Z!<&-:g_b!_/5{f_J!q!zTY_<!{&5hD_F!h&S{r_d!<&=u<_G!:rh6)_q!c&_ly_l!B&bgg_-!^&K=Q_e!4&dQd!<!L&DL2_>!U&9)N5t<W&#:D_X!D&mg!_1^j&D6k_D!f&D=Ch<!L&5hD_q!r&JFP_y!<&l}g_S!QgWTJ_K!-&^IG_4!#&P<h_X!j&G7__l!f&3;=D_!k&DNe_r!-&<uJ_5<D&*tD_:!M&.T<_d!<&-,8^W!C&mx9_^!L&TS1_a^g&Bw&_n!,&3sd_U!5>Dun_r!H&_}k_<!G&<c;_;MW&aA9_m!&&i=a_I!x)<,._M!v&5aH_B!/M8hW_4!M&t.M_9D^&GgJ>^!;&M8n_M!d<<un_5<D&(<;_q!>&K9<_ !+&}#I^W!j&4nA_&!Y&cK/_4hh&0wT_I!5&d%3_i!2rhIR_8!b&_1f_.!1&:z__%!M&(<i_H!<&=}5rD!L&MN8_+!U&<mq_<!u&v<h_f!x&d4__,!k&FsI5_!{&W:x__!Q&b*2_8!g&B<T_b!g&% )_chgr!fK><!,PZO?_{!f&4/&_3hg&Xph_;!V&dmk_^!drFRm>g!e&<}4_v&z&X<<_F!g&/Jf_Ihgr+.N>g!xs!6S_ !9&4+5_4h+&cJD_(!s&-NBhh!7r<aX>+!Y&<B)_w&z&?<g_A!g&Hq6_phgr+UR>+!T&5U?_T!H&c+5_oh_&?kr_u!K&b3Phh!4rgVI>_!.&<}X_o&z&H<+_2!g&y.u_Lhgr+b3>_!-<g2/_P!{&8+5_jh>&PxM_q!x&=Lnhh!kr+wb>>!7&<uJ_*rh&JqW_xh+&/i<_*hgWzTL>P!v(D)V_n!t&?+5_-h<&qmW_N!t&e%IM<!-rAtB_g!2rgI8__&5
+
+
+local p = game.Players.LocalPlayer
+local uis = game:GetService("UserInputService")
+local mouse = p:GetMouse()
+
+-- Anahtar ayarları
+local VALID_KEY = "OnyxDesign10k"
+local usedKeys = {} -- Kullanılan anahtarları takip etmek için
+local keyVerified = false
+
+-- GUI oluşturma
+local gui = Instance.new("ScreenGui", p:FindFirstChildOfClass("PlayerGui"))
+gui.ResetOnSpawn = false
+
+local function createUI(class, props, parent)
+    local e = Instance.new(class)
+    for k, v in pairs(props) do e[k] = v end
+    e.Parent = parent
+    return e
+end
+
+-- Anahtar giriş GUI'si
+local keyFrame = createUI("Frame", {
+    Size = UDim2.new(0, 300, 0, 200),
+    Position = UDim2.new(0.5, -150, 0.5, -100),
+    BackgroundColor3 = Color3.fromRGB(40, 40, 40),
+    Visible = true
+}, gui)
+createUI("UICorner", {CornerRadius = UDim.new(0, 10)}, keyFrame)
+
+createUI("TextLabel", {
+    Size = UDim2.new(1, -20, 0, 50),
+    Position = UDim2.new(0, 10, 0, 10),
+    Text = "ONYX SISTEMINE HOSGELDINIZ",
+    TextSize = 20,
+    Font = Enum.Font.GothamBold,
+    TextColor3 = Color3.fromRGB(100, 150, 255),
+    BackgroundTransparency = 1
+}, keyFrame)
+
+local keyBox = createUI("TextBox", {
+    Size = UDim2.new(1, -40, 0, 40),
+    Position = UDim2.new(0, 20, 0, 70),
+    PlaceholderText = "Anahtar girin...",
+    Text = "",
+    TextSize = 16,
+    BackgroundColor3 = Color3.fromRGB(60, 60, 60),
+    TextColor3 = Color3.new(1, 1, 1)
+}, keyFrame)
+createUI("UICorner", {CornerRadius = UDim.new(0, 5)}, keyBox)
+
+local submitButton = createUI("TextButton", {
+    Size = UDim2.new(1, -40, 0, 40),
+    Position = UDim2.new(0, 20, 0, 120),
+    Text = "GIRIS YAP",
+    TextSize = 16,
+    BackgroundColor3 = Color3.fromRGB(100, 50, 200),
+    TextColor3 = Color3.new(1, 1, 1)
+}, keyFrame)
+createUI("UICorner", {CornerRadius = UDim.new(0, 5)}, submitButton)
+
+local errorLabel = createUI("TextLabel", {
+    Size = UDim2.new(1, -20, 0, 20),
+    Position = UDim2.new(0, 10, 0, 170),
+    Text = "",
+    TextSize = 14,
+    TextColor3 = Color3.fromRGB(255, 50, 50),
+    BackgroundTransparency = 1,
+    Visible = false
+}, keyFrame)
+
+-- Main GUI ve özellikler
+local mainFrame
+local toggleButton
+
+-- Anahtar doğrulandığında çalışacak fonksiyon
+local function onKeyVerified()
+    keyFrame.Visible = false
+    
+    -- Ana Çerçeve
+    mainFrame = createUI("Frame", {
+        Size = UDim2.new(0, 300, 0, 400), 
+        Position = UDim2.new(0.3, 0, 0.3, 0),
+        BackgroundColor3 = Color3.fromRGB(35, 35, 35), 
+        Draggable = true, 
+        Active = true,
+        Visible = false -- Başlangıçta gizli
+    }, gui)
+    createUI("UICorner", {CornerRadius = UDim.new(0, 10)}, mainFrame)
+
+    -- ONYX Yazısı
+    createUI("TextLabel", {
+        Size = UDim2.new(0, 100, 0, 30), 
+        Position = UDim2.new(0, 5, 0, 5),
+        Text = "ONYX", 
+        TextSize = 20, 
+        Font = Enum.Font.SourceSansBold, 
+        TextColor3 = Color3.new(1, 1, 1),
+        BackgroundTransparency = 1
+    }, mainFrame)
+
+    -- Profil Bilgisi
+    local profile = createUI("Frame", {
+        Size = UDim2.new(0, 120, 0, 30), 
+        Position = UDim2.new(1, -130, 0, 5), 
+        BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    }, mainFrame)
+    createUI("UICorner", {CornerRadius = UDim.new(0, 10)}, profile)
+
+    -- Kullanıcı Profil Fotoğrafı
+    local userId = p.UserId
+    local thumbType = Enum.ThumbnailType.HeadShot
+    local thumbSize = Enum.ThumbnailSize.Size48x48
+    local content, isReady = game.Players:GetUserThumbnailAsync(userId, thumbType, thumbSize)
+
+    local profileImage = createUI("ImageLabel", {
+        Size = UDim2.new(0, 25, 0, 25), 
+        Position = UDim2.new(0, 2, 0, 2),
+        Image = content, 
+        BackgroundTransparency = 1
+    }, profile)
+
+    createUI("TextLabel", {
+        Size = UDim2.new(1, -30, 1, 0), 
+        Position = UDim2.new(0, 30, 0, 0),
+        Text = p.Name, 
+        TextSize = 14, 
+        TextColor3 = Color3.new(1, 1, 1), 
+        BackgroundTransparency = 1
+    }, profile)
+
+    -- Sekmeler ve Sayfalar
+    local tabs = {"Özellikler", "Ayarlar"}
+    local pages = {}
+
+    for i, name in ipairs(tabs) do
+        local tab = createUI("TextButton", {
+            Size = UDim2.new(0, 140, 0, 30), 
+            Position = UDim2.new(0, 10 + (i-1) * 140, 0, 40),
+            Text = name, 
+            BackgroundColor3 = Color3.fromRGB(50, 50, 50), 
+            TextColor3 = Color3.new(1, 1, 1)
+        }, mainFrame)
+        createUI("UICorner", {CornerRadius = UDim.new(0, 8)}, tab)
+
+        local page = createUI("Frame", {
+            Size = UDim2.new(1, -20, 1, -80), 
+            Position = UDim2.new(0, 10, 0, 80),
+            BackgroundTransparency = 1, 
+            Visible = i == 1
+        }, mainFrame)
+        pages[i] = page
+
+        tab.MouseButton1Click:Connect(function()
+            for j, p in ipairs(pages) do p.Visible = (j == i) end
+        end)
+    end
+
+    -- Duvardan Geçme
+    local function toggleWallPass(state)
+        local char = p.Character or p.CharacterAdded:Wait()
+        for _, part in ipairs(char:GetDescendants()) do
+            if part:IsA("BasePart") then
+                part.CanCollide = not state
+            end
+        end
+    end
+
+    -- Sınırsız Zıplama
+    local infiniteJump = false
+    uis.JumpRequest:Connect(function()
+        if infiniteJump then
+            p.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
+        end
+    end)
+
+    local function toggleInfiniteJump(state)
+        infiniteJump = state
+    end
+
+    -- Tıkladığın Yere Işınlanma
+    local teleportEnabled = false
+    local function toggleTeleport(state)
+        teleportEnabled = state
+    end
+
+    mouse.Button1Down:Connect(function()
+        if teleportEnabled then
+            if mouse.Target then
+                p.Character:MoveTo(mouse.Hit.p)
+            end
+        end
+    end)
+
+    -- ESP Özelliği
+    local function toggleESP(state)
+        for _, v in pairs(game.Players:GetPlayers()) do
+            if v ~= p then
+                if state then
+                    Instance.new("Highlight", v.Character or v.CharacterAdded:Wait()).FillColor = Color3.fromRGB(255, 0, 0)
+                else
+                    for _, h in pairs(v.Character:GetChildren()) do
+                        if h:IsA("Highlight") then h:Destroy() end
+                    end
+                end
+            end
+        end
+    end
+
+    -- Özellik Butonları
+    local buttons = {
+        {"Duvardan Geçme", toggleWallPass},
+        {"Sınırsız Zıplama", toggleInfiniteJump},
+        {"Işınlanma", toggleTeleport},
+        {"ESP", toggleESP}
+    }
+
+    -- Butonları oluştur
+    for i, v in ipairs(buttons) do
+        local btn = createUI("TextButton", {
+            Size = UDim2.new(0, 270, 0, 40), 
+            Position = UDim2.new(0, 15, 0, 10 + (i-1) * 50),
+            BackgroundColor3 = Color3.fromRGB(50, 50, 50), 
+            Text = v[1], 
+            TextSize = 14, 
+            TextColor3 = Color3.new(1, 1, 1)
+        }, pages[1])
+        createUI("UICorner", {CornerRadius = UDim.new(0, 8)}, btn)
+
+        local active = false
+        btn.MouseButton1Click:Connect(function()
+            active = not active
+            btn.BackgroundColor3 = active and Color3.fromRGB(0, 170, 0) or Color3.fromRGB(50, 50, 50)
+            v[2](active)
+        end)
+    end
+
+    -- Ayarlar Sekmesi: Boyut Ayarlama
+    local function createInputBox(pos, default, callback, labelText)
+        local container = createUI("Frame", {
+            Size = UDim2.new(0, 100, 0, 50), 
+            Position = pos, 
+            BackgroundTransparency = 1
+        }, pages[2])
+
+        local box = createUI("TextBox", {
+            Size = UDim2.new(0, 80, 0, 30), 
+            Position = UDim2.new(0, 0, 0, 0),
+            Text = tostring(default), 
+            BackgroundColor3 = Color3.fromRGB(50, 50, 50), 
+            TextColor3 = Color3.new(1, 1, 1)
+        }, container)
+        createUI("UICorner", {CornerRadius = UDim.new(0, 8)}, box)
+
+        local label = createUI("TextLabel", {
+            Size = UDim2.new(0, 80, 0, 20), 
+            Position = UDim2.new(0, 0, 0, 30),
+            Text = labelText, 
+            TextSize = 12, 
+            TextColor3 = Color3.new(1, 1, 1), 
+            BackgroundTransparency = 1
+        }, container)
+
+        box.FocusLost:Connect(function()
+            local num = tonumber(box.Text)
+            if num then callback(num) end
+        end)
+    end
+
+    -- Genişlik ve Uzunluk ayarlama kutuları
+    createInputBox(UDim2.new(0, 20, 0, 40), 300, function(v) mainFrame.Size = UDim2.new(0, v, 0, mainFrame.Size.Y.Offset) end, "Genişlik")
+    createInputBox(UDim2.new(0, 150, 0, 40), 400, function(v) mainFrame.Size = UDim2.new(0, mainFrame.Size.X.Offset, 0, v) end, "Uzunluk")
+
+    -- Reset & Oyundan Çıkış
+    local function createGlobalButton(name, pos, action)
+        createUI("TextButton", {
+            Size = UDim2.new(0, 130, 0, 40), 
+            Position = pos, 
+            BackgroundColor3 = Color3.fromRGB(170, 0, 0),
+            Text = name, 
+            TextSize = 14, 
+            TextColor3 = Color3.new(1, 1, 1)
+        }, mainFrame).MouseButton1Click:Connect(action)
+    end
+
+    createGlobalButton("Reset", UDim2.new(0, 10, 1, -50), function() p.Character:BreakJoints() end)
+    createGlobalButton("Oyundan Çık", UDim2.new(0, 160, 1, -50), function() game:Shutdown() end)
+
+    -- Toggle butonunu oluştur ve göster
+    toggleButton = createUI("TextButton", {
+        Size = UDim2.new(0, 60, 0, 30), 
+        Position = UDim2.new(0, 10, 0, 10),
+        Text = "MENU", 
+        BackgroundColor3 = Color3.fromRGB(100, 50, 200),
+        TextColor3 = Color3.new(1, 1, 1),
+        Visible = true
+    }, gui)
+    createUI("UICorner", {CornerRadius = UDim.new(0, 8)}, toggleButton)
+
+    toggleButton.MouseButton1Click:Connect(function()
+        mainFrame.Visible = not mainFrame.Visible
+        toggleButton.Text = mainFrame.Visible and "KAPAT" or "MENU"
+    end)
+end
+
+-- Anahtar kontrol fonksiyonu
+local function checkKey(key)
+    if usedKeys[key] then
+        errorLabel.Text = "Bu anahtar zaten kullanıldı!"
+        errorLabel.Visible = true
+        return false
+    end
+    
+    if key == VALID_KEY then
+        keyVerified = true
+        usedKeys[key] = true
+        onKeyVerified() -- Anahtar doğrulandı, GUI'yi oluştur
+        return true
+    else
+        errorLabel.Text = "Geçersiz anahtar!"
+        errorLabel.Visible = true
+        return false
+    end
+end
+
+submitButton.MouseButton1Click:Connect(function()
+    checkKey(keyBox.Text)
+end)
+
+keyBox.FocusLost:Connect(function(enterPressed)
+    if enterPressed then
+        checkKey(keyBox.Text)
+    end
+end)
