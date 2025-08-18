@@ -73,7 +73,7 @@ contentFrame.Position = UDim2.new(0.15, 0, 0, 0)
 contentFrame.BackgroundTransparency = 1
 contentFrame.Parent = menuFrame
 
--- Sayfa 1 içeriği (NoClip ve Tıkla Işınlan)
+-- Sayfa 1 içeriği (NoClip, Tıkla Işınlan ve Hız Ayarlı)
 local page1Frame = Instance.new("Frame")
 page1Frame.Name = "Page1"
 page1Frame.Size = UDim2.new(1, 0, 1, 0)
@@ -104,6 +104,32 @@ noclipButton.Text = "NoClip: KAPALI"
 noclipButton.Font = Enum.Font.Gotham
 noclipButton.TextSize = 18
 noclipButton.Parent = page1Frame
+
+-- Hız Ayarlı butonu (Sayfa 1)
+local speedButton = Instance.new("TextButton")
+speedButton.Name = "SpeedButton"
+speedButton.Size = UDim2.new(0.8, 0, 0.15, 0)
+speedButton.Position = UDim2.new(0.1, 0, 0.6, 0)
+speedButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+speedButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+speedButton.Text = "Hız Ayarla: 16 (Varsayılan)"
+speedButton.Font = Enum.Font.Gotham
+speedButton.TextSize = 18
+speedButton.Parent = page1Frame
+
+-- Hız giriş kutusu (Sayfa 1)
+local speedInput = Instance.new("TextBox")
+speedInput.Name = "SpeedInput"
+speedInput.Size = UDim2.new(0.8, 0, 0.1, 0)
+speedInput.Position = UDim2.new(0.1, 0, 0.8, 0)
+speedInput.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+speedInput.TextColor3 = Color3.fromRGB(255, 255, 255)
+speedInput.Text = "16"
+speedInput.Font = Enum.Font.Gotham
+speedInput.TextSize = 16
+speedInput.PlaceholderText = "Hız değeri girin (örn: 50)"
+speedInput.Visible = false
+speedInput.Parent = page1Frame
 
 -- Sayfa 2 içeriği (Oyuncu Listesi ve Işınlanma)
 local page2Frame = Instance.new("Frame")
@@ -172,10 +198,13 @@ teleportToPlayerButton.Parent = page2Frame
 local isMenuOpen = false
 local teleportActive = false
 local noclipActive = false
+local speedActive = false
 local teleportConnection = nil
 local noclipConnection = nil
 local currentPage = 1
 local selectedPlayer = nil
+local defaultWalkSpeed = 16
+local currentWalkSpeed = defaultWalkSpeed
 
 -- Oyuncu listesini güncelle (TÜM oyuncuları dahil et)
 local function updatePlayerList()
@@ -232,6 +261,39 @@ local function teleportToPlayer()
     
     local tween = TweenService:Create(rootPart, tweenInfo, {CFrame = targetRoot.CFrame})
     tween:Play()
+end
+
+-- Hız ayarlama fonksiyonu
+local function setWalkSpeed()
+    if not player.Character then return end
+    
+    local humanoid = player.Character:FindFirstChildOfClass("Humanoid")
+    if not humanoid then return end
+    
+    local speed = tonumber(speedInput.Text)
+    if speed and speed > 0 then
+        currentWalkSpeed = speed
+        humanoid.WalkSpeed = speed
+        speedButton.Text = "Hız Ayarla: " .. speed .. " (Ayarlı)"
+    else
+        speedInput.Text = tostring(defaultWalkSpeed)
+        currentWalkSpeed = defaultWalkSpeed
+        humanoid.WalkSpeed = defaultWalkSpeed
+        speedButton.Text = "Hız Ayarla: " .. defaultWalkSpeed .. " (Varsayılan)"
+    end
+end
+
+-- Hız ayarlarını aç/kapa
+local function toggleSpeedInput()
+    speedActive = not speedActive
+    speedInput.Visible = speedActive
+    
+    if speedActive then
+        speedButton.Text = "Hızı Uygula"
+        speedInput:CaptureFocus()
+    else
+        setWalkSpeed()
+    end
 end
 
 -- Sayfa geçiş fonksiyonu
@@ -330,15 +392,27 @@ Players.PlayerRemoving:Connect(updatePlayerList)
 toggleButton.MouseButton1Click:Connect(toggleMenu)
 teleportButton.MouseButton1Click:Connect(toggleTeleport)
 noclipButton.MouseButton1Click:Connect(toggleNoclip)
+speedButton.MouseButton1Click:Connect(toggleSpeedInput)
 page1Button.MouseButton1Click:Connect(function() switchPage(1) end)
 page2Button.MouseButton1Click:Connect(function() switchPage(2) end)
 teleportToPlayerButton.MouseButton1Click:Connect(teleportToPlayer)
 refreshButton.MouseButton1Click:Connect(updatePlayerList)
 
--- Karakter değiştiğinde NoClip'i güncelle
+-- Hız giriş kutusu eventleri
+speedInput.FocusLost:Connect(function(enterPressed)
+    if enterPressed then
+        toggleSpeedInput()
+    end
+end)
+
+-- Karakter değiştiğinde NoClip ve Hız ayarlarını güncelle
 player.CharacterAdded:Connect(function(character)
     if noclipActive then
         toggleNoclip()
         toggleNoclip()
     end
+    
+    -- Hız ayarını yeni karaktere uygula
+    local humanoid = character:WaitForChildOfClass("Humanoid")
+    humanoid.WalkSpeed = currentWalkSpeed
 end)
