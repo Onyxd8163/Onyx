@@ -12,11 +12,24 @@ screenGui.Name = "AdvancedMenu"
 screenGui.ResetOnSpawn = false
 screenGui.Parent = playerGui
 
--- Açma/Kapama butonu
+-- ONYX HUB BAŞLIK (Sol üstte)
+local titleLabel = Instance.new("TextLabel")
+titleLabel.Name = "OnyxHubTitle"
+titleLabel.Size = UDim2.new(0, 150, 0, 30)
+titleLabel.Position = UDim2.new(0, 20, 0, 20)
+titleLabel.BackgroundTransparency = 1
+titleLabel.Text = "ONYX HUB"
+titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+titleLabel.Font = Enum.Font.GothamBlack -- Kalın font
+titleLabel.TextSize = 20
+titleLabel.TextXAlignment = Enum.TextXAlignment.Left
+titleLabel.Parent = screenGui
+
+-- Açma/Kapama butonu (Başlığın yanına)
 local toggleButton = Instance.new("TextButton")
 toggleButton.Name = "ToggleButton"
 toggleButton.Size = UDim2.new(0, 50, 0, 50)
-toggleButton.Position = UDim2.new(0, 20, 0, 20)
+toggleButton.Position = UDim2.new(0, 180, 0, 20)
 toggleButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
 toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 toggleButton.Text = "≡"
@@ -73,7 +86,7 @@ contentFrame.Position = UDim2.new(0.15, 0, 0, 0)
 contentFrame.BackgroundTransparency = 1
 contentFrame.Parent = menuFrame
 
--- Sayfa 1 içeriği (NoClip, Tıkla Işınlan ve Hız Ayarlı)
+-- Sayfa 1 içeriği (NoClip, Tıkla Işınlan, Hız, Sınırsız Zıplama)
 local page1Frame = Instance.new("Frame")
 page1Frame.Name = "Page1"
 page1Frame.Size = UDim2.new(1, 0, 1, 0)
@@ -131,6 +144,18 @@ speedInput.PlaceholderText = "Hız değeri girin (örn: 50)"
 speedInput.Visible = false
 speedInput.Parent = page1Frame
 
+-- Sınırsız Zıplama butonu (Sayfa 1)
+local infJumpButton = Instance.new("TextButton")
+infJumpButton.Name = "InfJumpButton"
+infJumpButton.Size = UDim2.new(0.8, 0, 0.15, 0)
+infJumpButton.Position = UDim2.new(0.1, 0, 0.8, 0)
+infJumpButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+infJumpButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+infJumpButton.Text = "Sınırsız Zıplama: KAPALI"
+infJumpButton.Font = Enum.Font.Gotham
+infJumpButton.TextSize = 18
+infJumpButton.Parent = page1Frame
+
 -- Sayfa 2 içeriği (Oyuncu Listesi ve Işınlanma)
 local page2Frame = Instance.new("Frame")
 page2Frame.Name = "Page2"
@@ -152,11 +177,23 @@ playerListLabel.TextSize = 18
 playerListLabel.TextXAlignment = Enum.TextXAlignment.Left
 playerListLabel.Parent = page2Frame
 
+-- Arama kutusu
+local searchBox = Instance.new("TextBox")
+searchBox.Name = "SearchBox"
+searchBox.Size = UDim2.new(0.6, 0, 0.1, 0)
+searchBox.Position = UDim2.new(0.1, 0, 0.15, 0)
+searchBox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+searchBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+searchBox.PlaceholderText = "Oyuncu ara..."
+searchBox.Font = Enum.Font.Gotham
+searchBox.TextSize = 16
+searchBox.Parent = page2Frame
+
 -- Refresh butonu
 local refreshButton = Instance.new("TextButton")
 refreshButton.Name = "RefreshButton"
 refreshButton.Size = UDim2.new(0.2, 0, 0.1, 0)
-refreshButton.Position = UDim2.new(0.7, 0, 0.05, 0)
+refreshButton.Position = UDim2.new(0.7, 0, 0.15, 0)
 refreshButton.BackgroundColor3 = Color3.fromRGB(0, 90, 180)
 refreshButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 refreshButton.Text = "Yenile"
@@ -167,8 +204,8 @@ refreshButton.Parent = page2Frame
 -- Oyuncu listesi ScrollingFrame
 local playerListFrame = Instance.new("ScrollingFrame")
 playerListFrame.Name = "PlayerListFrame"
-playerListFrame.Size = UDim2.new(0.8, 0, 0.6, 0)
-playerListFrame.Position = UDim2.new(0.1, 0, 0.15, 0)
+playerListFrame.Size = UDim2.new(0.8, 0, 0.5, 0)
+playerListFrame.Position = UDim2.new(0.1, 0, 0.25, 0)
 playerListFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
 playerListFrame.BackgroundTransparency = 0.5
 playerListFrame.BorderSizePixel = 0
@@ -199,38 +236,42 @@ local isMenuOpen = false
 local teleportActive = false
 local noclipActive = false
 local speedActive = false
+local infJumpActive = false
 local teleportConnection = nil
 local noclipConnection = nil
+local infJumpConnection = nil
 local currentPage = 1
 local selectedPlayer = nil
 local defaultWalkSpeed = 16
 local currentWalkSpeed = defaultWalkSpeed
 
--- Oyuncu listesini güncelle (TÜM oyuncuları dahil et)
-local function updatePlayerList()
+-- Oyuncu listesini güncelle (Filtreleme ile)
+local function updatePlayerList(searchTerm)
     playerListFrame:ClearAllChildren()
     
     local players = Players:GetPlayers()
     playerListFrame.CanvasSize = UDim2.new(0, 0, 0, #players * 35)
     
     for _, plr in ipairs(players) do
-        local playerButton = Instance.new("TextButton")
-        playerButton.Name = plr.Name
-        playerButton.Size = UDim2.new(1, -10, 0, 30)
-        playerButton.BackgroundColor3 = (plr == player) and Color3.fromRGB(80, 80, 80) or 
-                                      (plr == selectedPlayer) and Color3.fromRGB(0, 120, 255) or 
-                                      Color3.fromRGB(60, 60, 60)
-        playerButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-        playerButton.Text = plr.Name .. (plr == player and " (Siz)" or "")
-        playerButton.Font = Enum.Font.Gotham
-        playerButton.TextSize = 14
-        playerButton.Parent = playerListFrame
-        
-        if plr ~= player then
-            playerButton.MouseButton1Click:Connect(function()
-                selectedPlayer = plr
-                updatePlayerList() -- Listeyi yeniden çizerek seçimi göster
-            end)
+        if not searchTerm or string.find(string.lower(plr.Name), string.lower(searchTerm)) then
+            local playerButton = Instance.new("TextButton")
+            playerButton.Name = plr.Name
+            playerButton.Size = UDim2.new(1, -10, 0, 30)
+            playerButton.BackgroundColor3 = (plr == player) and Color3.fromRGB(80, 80, 80) or 
+                                          (plr == selectedPlayer) and Color3.fromRGB(0, 120, 255) or 
+                                          Color3.fromRGB(60, 60, 60)
+            playerButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+            playerButton.Text = plr.Name .. (plr == player and " (Siz)" or "")
+            playerButton.Font = Enum.Font.Gotham
+            playerButton.TextSize = 14
+            playerButton.Parent = playerListFrame
+            
+            if plr ~= player then
+                playerButton.MouseButton1Click:Connect(function()
+                    selectedPlayer = plr
+                    updatePlayerList(searchBox.Text) -- Listeyi yeniden çizerek seçimi göster
+                end)
+            end
         end
     end
 end
@@ -296,6 +337,23 @@ local function toggleSpeedInput()
     end
 end
 
+-- Sınırsız zıplama fonksiyonu
+local function toggleInfJump()
+    infJumpActive = not infJumpActive
+    infJumpButton.Text = infJumpActive and "Sınırsız Zıplama: AÇIK" or "Sınırsız Zıplama: KAPALI"
+    
+    if infJumpActive then
+        infJumpConnection = UserInputService.JumpRequest:Connect(function()
+            if player.Character and player.Character:FindFirstChildOfClass("Humanoid") then
+                player.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+            end
+        end)
+    elseif infJumpConnection then
+        infJumpConnection:Disconnect()
+        infJumpConnection = nil
+    end
+end
+
 -- Sayfa geçiş fonksiyonu
 local function switchPage(pageNum)
     currentPage = pageNum
@@ -303,7 +361,7 @@ local function switchPage(pageNum)
     page2Frame.Visible = (pageNum == 2)
     
     if pageNum == 2 then
-        updatePlayerList()
+        updatePlayerList(searchBox.Text)
     end
     
     -- Buton renklerini güncelle
@@ -385,18 +443,24 @@ local function toggleNoclip()
 end
 
 -- Oyuncu değişikliklerini takip et
-Players.PlayerAdded:Connect(updatePlayerList)
-Players.PlayerRemoving:Connect(updatePlayerList)
+Players.PlayerAdded:Connect(function() updatePlayerList(searchBox.Text) end)
+Players.PlayerRemoving:Connect(function() updatePlayerList(searchBox.Text) end)
+
+-- Arama kutusu dinleyici
+searchBox:GetPropertyChangedSignal("Text"):Connect(function()
+    updatePlayerList(searchBox.Text)
+end)
 
 -- Buton eventleri
 toggleButton.MouseButton1Click:Connect(toggleMenu)
 teleportButton.MouseButton1Click:Connect(toggleTeleport)
 noclipButton.MouseButton1Click:Connect(toggleNoclip)
 speedButton.MouseButton1Click:Connect(toggleSpeedInput)
+infJumpButton.MouseButton1Click:Connect(toggleInfJump)
 page1Button.MouseButton1Click:Connect(function() switchPage(1) end)
 page2Button.MouseButton1Click:Connect(function() switchPage(2) end)
 teleportToPlayerButton.MouseButton1Click:Connect(teleportToPlayer)
-refreshButton.MouseButton1Click:Connect(updatePlayerList)
+refreshButton.MouseButton1Click:Connect(function() updatePlayerList(searchBox.Text) end)
 
 -- Hız giriş kutusu eventleri
 speedInput.FocusLost:Connect(function(enterPressed)
@@ -410,6 +474,11 @@ player.CharacterAdded:Connect(function(character)
     if noclipActive then
         toggleNoclip()
         toggleNoclip()
+    end
+    
+    if infJumpActive then
+        toggleInfJump()
+        toggleInfJump()
     end
     
     -- Hız ayarını yeni karaktere uygula
