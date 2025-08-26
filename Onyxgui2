@@ -7,7 +7,7 @@ local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 
 -- Key sistemi değişkenleri
-local correctKey = "OnyxHub!"
+local correctKey = "OnyxHub99"
 local keyVerified = false
 
 -- Key giriş GUI
