@@ -7,7 +7,7 @@ local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 
 -- Key sistemi değişkenleri
-local correctKey = "OnyxHub999"
+local correctKey = "OnyxHubNew"
 local keyVerified = false
 
 -- Key giriş GUI
@@ -94,6 +94,124 @@ keyInput.FocusLost:Connect(function(enterPressed)
     end
 end)
 
+-- ESP için değişkenler
+local espEnabled = false
+local espConnections = {}
+local espObjects = {}
+
+-- ESP fonksiyonları
+local function createESP(plr)
+    if plr == player then return end
+    
+    local function updateESP()
+        if not espEnabled or not plr.Character then
+            if espObjects[plr] then
+                espObjects[plr]:Destroy()
+                espObjects[plr] = nil
+            end
+            return
+        end
+        
+        local humanoidRootPart = plr.Character:FindFirstChild("HumanoidRootPart")
+        local humanoid = plr.Character:FindFirstChildOfClass("Humanoid")
+        
+        if not humanoidRootPart or not humanoid or humanoid.Health <= 0 then
+            if espObjects[plr] then
+                espObjects[plr]:Destroy()
+                espObjects[plr] = nil
+            end
+            return
+        end
+        
+        -- Mesafe hesaplama
+        local distance = "N/A"
+        if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+            distance = tostring(math.floor((humanoidRootPart.Position - player.Character.HumanoidRootPart.Position).Magnitude)) .. " stud"
+        end
+        
+        -- ESP text oluştur veya güncelle
+        if not espObjects[plr] then
+            local billboard = Instance.new("BillboardGui")
+            billboard.Name = plr.Name .. "ESP"
+            billboard.Adornee = humanoidRootPart
+            billboard.Size = UDim2.new(0, 200, 0, 50)
+            billboard.StudsOffset = Vector3.new(0, 3, 0)
+            billboard.AlwaysOnTop = true
+            billboard.MaxDistance = 1000
+            billboard.Parent = playerGui
+            
+            local textLabel = Instance.new("TextLabel")
+            textLabel.Size = UDim2.new(1, 0, 1, 0)
+            textLabel.BackgroundTransparency = 1
+            textLabel.Text = plr.Name .. "\n" .. distance
+            textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+            textLabel.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+            textLabel.TextStrokeTransparency = 0
+            textLabel.Font = Enum.Font.GothamBold
+            textLabel.TextSize = 14
+            textLabel.Parent = billboard
+            
+            espObjects[plr] = billboard
+        else
+            espObjects[plr].TextLabel.Text = plr.Name .. "\n" .. distance
+        end
+    end
+    
+    -- ESP güncelleme connection'ı
+    local conn
+    if espEnabled then
+        conn = RunService.Heartbeat:Connect(updateESP)
+    end
+    espConnections[plr] = conn
+end
+
+local function removeESP(plr)
+    if espConnections[plr] then
+        espConnections[plr]:Disconnect()
+        espConnections[plr] = nil
+    end
+    if espObjects[plr] then
+        espObjects[plr]:Destroy()
+        espObjects[plr] = nil
+    end
+end
+
+local function toggleESP()
+    espEnabled = not espEnabled
+    
+    if espEnabled then
+        -- Tüm oyuncular için ESP oluştur
+        for _, plr in ipairs(Players:GetPlayers()) do
+            createESP(plr)
+        end
+        
+        -- Yeni oyuncular için dinleyici ekle
+        espConnections.playerAdded = Players.PlayerAdded:Connect(function(plr)
+            createESP(plr)
+        end)
+        
+        -- Oyuncu çıkışları için dinleyici ekle
+        espConnections.playerRemoving = Players.PlayerRemoving:Connect(function(plr)
+            removeESP(plr)
+        end)
+    else
+        -- Tüm ESP'leri temizle
+        for plr, _ in pairs(espObjects) do
+            removeESP(plr)
+        end
+        
+        -- Connection'ları temizle
+        if espConnections.playerAdded then
+            espConnections.playerAdded:Disconnect()
+            espConnections.playerAdded = nil
+        end
+        if espConnections.playerRemoving then
+            espConnections.playerRemoving:Disconnect()
+            espConnections.playerRemoving = nil
+        end
+    end
+end
+
 -- Ana menüyü oluşturma fonksiyonu
 function createMainGui()
     -- Ana menü GUI
@@ -144,29 +262,41 @@ function createMainGui()
     pageButtonsFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
     pageButtonsFrame.Parent = menuFrame
 
-    -- Sayfa 1 butonu
+    -- Sayfa 1 butonu (Kişisel)
     local page1Button = Instance.new("TextButton")
     page1Button.Name = "Page1Button"
-    page1Button.Size = UDim2.new(1, -10, 0.15, 0)
+    page1Button.Size = UDim2.new(1, -10, 0.12, 0)
     page1Button.Position = UDim2.new(0, 5, 0.1, 0)
     page1Button.BackgroundColor3 = Color3.fromRGB(0, 90, 180)
     page1Button.TextColor3 = Color3.fromRGB(255, 255, 255)
     page1Button.Text = "Kişisel"
     page1Button.Font = Enum.Font.Gotham
-    page1Button.TextSize = 16
+    page1Button.TextSize = 14
     page1Button.Parent = pageButtonsFrame
 
-    -- Sayfa 2 butonu
+    -- Sayfa 2 butonu (Evrensel)
     local page2Button = Instance.new("TextButton")
     page2Button.Name = "Page2Button"
-    page2Button.Size = UDim2.new(1, -10, 0.15, 0)
-    page2Button.Position = UDim2.new(0, 5, 0.3, 0)
+    page2Button.Size = UDim2.new(1, -10, 0.12, 0)
+    page2Button.Position = UDim2.new(0, 5, 0.25, 0)
     page2Button.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
     page2Button.TextColor3 = Color3.fromRGB(200, 200, 200)
     page2Button.Text = "Evrensel"
     page2Button.Font = Enum.Font.Gotham
-    page2Button.TextSize = 16
+    page2Button.TextSize = 14
     page2Button.Parent = pageButtonsFrame
+
+    -- Sayfa 3 butonu (ESP)
+    local page3Button = Instance.new("TextButton")
+    page3Button.Name = "Page3Button"
+    page3Button.Size = UDim2.new(1, -10, 0.12, 0)
+    page3Button.Position = UDim2.new(0, 5, 0.4, 0)
+    page3Button.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    page3Button.TextColor3 = Color3.fromRGB(200, 200, 200)
+    page3Button.Text = "ESP"
+    page3Button.Font = Enum.Font.Gotham
+    page3Button.TextSize = 14
+    page3Button.Parent = pageButtonsFrame
 
     -- Sayfa içerik alanı
     local contentFrame = Instance.new("Frame")
@@ -176,7 +306,7 @@ function createMainGui()
     contentFrame.BackgroundTransparency = 1
     contentFrame.Parent = menuFrame
 
-    -- Sayfa 1 içeriği (NoClip, Tıkla Işınlan, Hız, Sınırsız Zıplama)
+    -- Sayfa 1 içeriği (Kişisel)
     local page1Frame = Instance.new("Frame")
     page1Frame.Name = "Page1"
     page1Frame.Size = UDim2.new(1, 0, 1, 0)
@@ -246,7 +376,7 @@ function createMainGui()
     infJumpButton.TextSize = 18
     infJumpButton.Parent = page1Frame
 
-    -- Sayfa 2 içeriği (Oyuncu Listesi ve Işınlanma)
+    -- Sayfa 2 içeriği (Evrensel)
     local page2Frame = Instance.new("Frame")
     page2Frame.Name = "Page2"
     page2Frame.Size = UDim2.new(1, 0, 1, 0)
@@ -320,6 +450,51 @@ function createMainGui()
     teleportToPlayerButton.Font = Enum.Font.GothamBold
     teleportToPlayerButton.TextSize = 18
     teleportToPlayerButton.Parent = page2Frame
+
+    -- Sayfa 3 içeriği (ESP)
+    local page3Frame = Instance.new("Frame")
+    page3Frame.Name = "Page3"
+    page3Frame.Size = UDim2.new(1, 0, 1, 0)
+    page3Frame.BackgroundTransparency = 1
+    page3Frame.Visible = false
+    page3Frame.Parent = contentFrame
+
+    -- ESP başlığı
+    local espTitle = Instance.new("TextLabel")
+    espTitle.Name = "ESPTitle"
+    espTitle.Size = UDim2.new(0.8, 0, 0.1, 0)
+    espTitle.Position = UDim2.new(0.1, 0, 0.1, 0)
+    espTitle.BackgroundTransparency = 1
+    espTitle.Text = "ESP AYARLARI"
+    espTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+    espTitle.Font = Enum.Font.GothamBold
+    espTitle.TextSize = 20
+    espTitle.Parent = page3Frame
+
+    -- ESP Aç/Kapa butonu
+    local espToggleButton = Instance.new("TextButton")
+    espToggleButton.Name = "ESPToggleButton"
+    espToggleButton.Size = UDim2.new(0.8, 0, 0.15, 0)
+    espToggleButton.Position = UDim2.new(0.1, 0, 0.3, 0)
+    espToggleButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+    espToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    espToggleButton.Text = "ESP: KAPALI"
+    espToggleButton.Font = Enum.Font.Gotham
+    espToggleButton.TextSize = 18
+    espToggleButton.Parent = page3Frame
+
+    -- ESP açıklama
+    local espDescription = Instance.new("TextLabel")
+    espDescription.Name = "ESPDescription"
+    espDescription.Size = UDim2.new(0.8, 0, 0.3, 0)
+    espDescription.Position = UDim2.new(0.1, 0, 0.5, 0)
+    espDescription.BackgroundTransparency = 1
+    espDescription.Text = "ESP özelliği açıldığında tüm oyuncuların üstünde isimleri ve size olan uzaklıkları görünecektir."
+    espDescription.TextColor3 = Color3.fromRGB(200, 200, 200)
+    espDescription.Font = Enum.Font.Gotham
+    espDescription.TextSize = 14
+    espDescription.TextWrapped = true
+    espDescription.Parent = page3Frame
 
     -- Değişkenler
     local isMenuOpen = false
@@ -443,20 +618,30 @@ function createMainGui()
         end
     end
 
+    -- ESP aç/kapa fonksiyonu
+    local function toggleESPButton()
+        toggleESP()
+        espToggleButton.Text = espEnabled and "ESP: AÇIK" or "ESP: KAPALI"
+    end
+
     -- Sayfa geçiş fonksiyonu
     local function switchPage(pageNum)
         currentPage = pageNum
         page1Frame.Visible = (pageNum == 1)
         page2Frame.Visible = (pageNum == 2)
+        page3Frame.Visible = (pageNum == 3)
         
         if pageNum == 2 then
             updatePlayerList(searchBox.Text)
         end
         
+        -- Buton renklerini güncelle
         page1Button.BackgroundColor3 = (pageNum == 1) and Color3.fromRGB(0, 90, 180) or Color3.fromRGB(40, 40, 40)
         page1Button.TextColor3 = (pageNum == 1) and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(200, 200, 200)
         page2Button.BackgroundColor3 = (pageNum == 2) and Color3.fromRGB(0, 90, 180) or Color3.fromRGB(40, 40, 40)
         page2Button.TextColor3 = (pageNum == 2) and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(200, 200, 200)
+        page3Button.BackgroundColor3 = (pageNum == 3) and Color3.fromRGB(0, 90, 180) or Color3.fromRGB(40, 40, 40)
+        page3Button.TextColor3 = (pageNum == 3) and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(200, 200, 200)
     end
 
     -- Menüyü aç/kapa
@@ -545,8 +730,10 @@ function createMainGui()
     noclipButton.MouseButton1Click:Connect(toggleNoclip)
     speedButton.MouseButton1Click:Connect(toggleSpeedInput)
     infJumpButton.MouseButton1Click:Connect(toggleInfJump)
+    espToggleButton.MouseButton1Click:Connect(toggleESPButton)
     page1Button.MouseButton1Click:Connect(function() switchPage(1) end)
     page2Button.MouseButton1Click:Connect(function() switchPage(2) end)
+    page3Button.MouseButton1Click:Connect(function() switchPage(3) end)
     teleportToPlayerButton.MouseButton1Click:Connect(teleportToPlayer)
     refreshButton.MouseButton1Click:Connect(function() updatePlayerList(searchBox.Text) end)
 
